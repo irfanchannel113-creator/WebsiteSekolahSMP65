@@ -95,3 +95,9 @@
 /* Halaman 404 */
 .not-found { text-align: center; padding: 64px 16px; }
 .footer-bottom > span:first-child { display: inline; }
+
+/* Bagian yang hanya tampil di beranda / di halaman daftar berita.
+   (Disembunyikan lewat CSS karena Blogger tidak mengizinkan b:section di dalam b:if.) */
+.only-home, .only-listing { display: none; }
+.view-home .only-home { display: block; }
+.view-list:not(.view-home):not(.view-error) .only-listing { display: flex; }

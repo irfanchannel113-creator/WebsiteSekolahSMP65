@@ -18,6 +18,8 @@
  * Tema SMPN 65 Batam — biru minimalis
  * Dibuat dari desain di folder assets/ pada repositori WebsiteSekolahSMP65.
  */
+]]></b:skin>
+<style type='text/css'>/*<![CDATA[*/
 :root {
   --blue-950: #0a1f44;
   --blue-900: #0d2a5c;
@@ -528,9 +530,15 @@ p { margin: 0 0 1em; }
 /* Halaman 404 */
 .not-found { text-align: center; padding: 64px 16px; }
 .footer-bottom > span:first-child { display: inline; }
-]]></b:skin>
+
+/* Bagian yang hanya tampil di beranda / di halaman daftar berita.
+   (Disembunyikan lewat CSS karena Blogger tidak mengizinkan b:section di dalam b:if.) */
+.only-home, .only-listing { display: none; }
+.view-home .only-home { display: block; }
+.view-list:not(.view-home):not(.view-error) .only-listing { display: flex; }
+/*]]>*/</style>
 </head>
-<body expr:class='data:view.isSingleItem ? &quot;view-single&quot; : &quot;view-list&quot;'>
+<body expr:class='(data:view.isSingleItem ? &quot;view-single&quot; : &quot;view-list&quot;) + (data:view.isHomepage ? &quot; view-home&quot; : &quot;&quot;) + (data:view.isError ? &quot; view-error&quot; : &quot;&quot;)'>
 <a class='skip-link' href='#konten'>Lewati ke konten</a>
 
 <!-- ==================== HEADER ==================== -->
@@ -620,8 +628,7 @@ p { margin: 0 0 1em; }
 <main id='konten'>
 
 <!-- ==================== BERANDA: HERO + AKSES CEPAT ==================== -->
-<b:if cond='data:view.isHomepage'>
-  <section class='hero'>
+<section class='hero only-home'>
     <div class='container hero-inner'>
       <div>
         <p class='eyebrow'>Selamat datang di website</p>
@@ -632,7 +639,7 @@ p { margin: 0 0 1em; }
           <a class='btn btn-outline' expr:href='data:blog.homepageUrl + &quot;p/visi-dan-misi.html&quot;'>Profil Sekolah</a>
         </div>
       </div>
-      <b:section class='hero-logo' id='hero-logo' maxwidgets='1' name='Logo Besar (Beranda)' showaddelement='no'>
+      <b:section class='hero-logo' id='hero_logo' maxwidgets='1' name='Logo Besar (Beranda)' showaddelement='no'>
         <b:widget id='Image901' locked='true' title='Logo SMP Negeri 65 Batam' type='Image' version='1' visible='true'>
           <b:includable id='main'>
             <b:if cond='data:sourceUrl'>
@@ -644,7 +651,7 @@ p { margin: 0 0 1em; }
     </div>
   </section>
 
-  <div class='container'>
+<div class='container only-home'>
     <b:section class='quick-section' id='quick' maxwidgets='1' name='Akses Cepat (Beranda)' showaddelement='no'>
       <b:widget id='LinkList903' locked='true' title='Akses Cepat' type='LinkList' version='1' visible='true'>
         <b:widget-settings>
@@ -671,7 +678,6 @@ p { margin: 0 0 1em; }
       </b:widget>
     </b:section>
   </div>
-</b:if>
 
 <!-- ==================== JUDUL HALAMAN DAFTAR ==================== -->
 <b:if cond='data:view.isMultipleItems and not data:view.isHomepage'>
@@ -718,10 +724,16 @@ p { margin: 0 0 1em; }
       </div>
     </b:if>
 
-    <b:if cond='data:view.isMultipleItems and not data:view.isHomepage'>
-      <div class='toolbar'>
+      <div class='toolbar only-listing'>
         <b:section class='chips-section' id='labels' maxwidgets='1' name='Kategori (Halaman Berita)' showaddelement='no'>
           <b:widget id='Label901' locked='true' title='Kategori' type='Label' version='1' visible='true'>
+            <b:widget-settings>
+              <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+              <b:widget-setting name='display'>LIST</b:widget-setting>
+              <b:widget-setting name='selectedLabelsList'/>
+              <b:widget-setting name='showType'>ALL</b:widget-setting>
+              <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
+            </b:widget-settings>
             <b:includable id='main'>
               <div aria-label='Filter kategori' class='chips'>
                 <a class='chip' expr:href='data:blog.homepageUrl + &quot;search&quot;'>Semua</a>
@@ -737,7 +749,6 @@ p { margin: 0 0 1em; }
           <input aria-label='Cari berita' expr:value='data:view.search.query' name='q' placeholder='Cari berita…' type='search'/>
         </form>
       </div>
-    </b:if>
 
     <b:if cond='data:view.isError'>
       <div class='not-found'>
@@ -824,8 +835,7 @@ p { margin: 0 0 1em; }
 </section>
 
 <!-- ==================== BERANDA: SAMBUTAN + AJAKAN ==================== -->
-<b:if cond='data:view.isHomepage'>
-  <section class='block block-alt'>
+<section class='block block-alt only-home'>
     <div class='container'>
       <b:section class='welcome-section' id='sambutan' maxwidgets='1' name='Sambutan Kepala Sekolah (Beranda)' showaddelement='no'>
         <b:widget id='Image902' locked='true' title='Sambutan Kepala Sekolah' type='Image' version='1' visible='true'>
@@ -850,7 +860,7 @@ p { margin: 0 0 1em; }
     </div>
   </section>
 
-  <section class='block'>
+<section class='block only-home'>
     <div class='container'>
       <b:section class='cta-section' id='ajakan' maxwidgets='1' name='Ajakan (Beranda)' showaddelement='no'>
         <b:widget id='HTML901' locked='true' title='Ada yang ingin kamu ceritakan?' type='HTML' version='1' visible='true'>
@@ -870,14 +880,14 @@ p { margin: 0 0 1em; }
       </b:section>
     </div>
   </section>
-</b:if>
 
 </main>
 
 <!-- ==================== FOOTER ==================== -->
 <footer class='site-footer'>
   <div class='container footer-grid'>
-    <b:section class='footer-col footer-map' id='footer-lokasi' maxwidgets='2' name='Footer: Lokasi &amp; Kontak' showaddelement='no'>
+    <div class='footer-col footer-map'>
+    <b:section class='footer-sec' id='footer_lokasi' maxwidgets='2' name='Footer: Lokasi &amp; Kontak' showaddelement='no'>
       <b:widget id='HTML903' locked='true' title='Lokasi SMPN 65 Batam' type='HTML' version='1' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='content'><![CDATA[<iframe src="https://www.google.com/maps?q=SMP+Negeri+65+Batam&output=embed" title="Peta lokasi SMP Negeri 65 Batam" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
@@ -896,8 +906,10 @@ p { margin: 0 0 1em; }
         </b:includable>
       </b:widget>
     </b:section>
+    </div>
 
-    <b:section class='footer-col' id='footer-links' maxwidgets='1' name='Footer: Tautan' showaddelement='no'>
+    <div class='footer-col'>
+    <b:section class='footer-sec' id='footer_links' maxwidgets='1' name='Footer: Tautan' showaddelement='no'>
       <b:widget id='LinkList904' locked='true' title='Tautan' type='LinkList' version='1' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='sorting'>NONE</b:widget-setting>
@@ -926,8 +938,10 @@ p { margin: 0 0 1em; }
         </b:includable>
       </b:widget>
     </b:section>
+    </div>
 
-    <b:section class='footer-col' id='footer-penting' maxwidgets='1' name='Footer: Link Penting Pendidikan' showaddelement='no'>
+    <div class='footer-col'>
+    <b:section class='footer-sec' id='footer_penting' maxwidgets='1' name='Footer: Link Penting Pendidikan' showaddelement='no'>
       <b:widget id='LinkList905' locked='true' title='Link Penting Pendidikan' type='LinkList' version='1' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='sorting'>NONE</b:widget-setting>
@@ -948,8 +962,10 @@ p { margin: 0 0 1em; }
         </b:includable>
       </b:widget>
     </b:section>
+    </div>
 
-    <b:section class='footer-col' id='footer-extra' maxwidgets='3' name='Footer: Kata Mutiara &amp; Gadget Lain' showaddelement='yes'>
+    <div class='footer-col'>
+    <b:section class='footer-sec' id='footer_extra' maxwidgets='3' name='Footer: Kata Mutiara &amp; Gadget Lain' showaddelement='yes'>
       <b:widget id='HTML904' locked='false' title='Kata-Kata Mutiara' type='HTML' version='1' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='content'><![CDATA[<p>Jika kamu tak tahan penatnya belajar, maka kamu akan menanggung perihnya kebodohan.</p>
@@ -961,6 +977,7 @@ p { margin: 0 0 1em; }
         </b:includable>
       </b:widget>
     </b:section>
+    </div>
   </div>
   <div class='container footer-bottom'>
     <span>&#169; <span data-year='true'>2026</span> <data:blog.title/></span>
