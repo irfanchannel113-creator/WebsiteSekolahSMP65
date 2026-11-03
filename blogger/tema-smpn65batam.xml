@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' lang='id' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<b:include data='blog' name='all-head-content'/>
+<b:if cond='data:view.isHomepage'>
+<title><data:blog.title.escaped/></title>
+<b:else/>
+<title><data:view.title.escaped/> | <data:blog.title.escaped/></title>
+</b:if>
+<meta content='#0d2a5c' name='theme-color'/>
+<link href='https://fonts.googleapis.com' rel='preconnect'/>
+<link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+<link href='https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;family=Schibsted+Grotesk:wght@500;600;700&amp;display=swap' rel='stylesheet'/>
+<b:skin version='1.0.0'><![CDATA[
+/*
+ * Tema SMPN 65 Batam — biru minimalis
+ * Dibuat dari desain di folder assets/ pada repositori WebsiteSekolahSMP65.
+ */
+:root {
+  --blue-950: #0a1f44;
+  --blue-900: #0d2a5c;
+  --blue-700: #1746a2;
+  --blue-600: #1d5fd1;
+  --blue-500: #3b7cf0;
+  --blue-100: #dce8ff;
+  --blue-50: #f1f6ff;
+  --ink: #0f1b2d;
+  --muted: #5a6a82;
+  --line: #e2e8f2;
+  --bg: #ffffff;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(13, 42, 92, .06), 0 8px 24px rgba(13, 42, 92, .06);
+  /* Judul & elemen antarmuka: Schibsted Grotesk (pengganti gratis Akzidenz-Grotesk).
+     Teks isi: Libre Baskerville. */
+  --font: "Libre Baskerville", Baskerville, "Baskerville Old Face", Georgia, serif;
+  --font-head: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--blue-600); text-decoration: none; }
+a:hover { color: var(--blue-700); }
+h1, h2, h3 { font-family: var(--font-head); line-height: 1.2; margin: 0 0 .4em; letter-spacing: -.015em; }
+h1 { font-size: clamp(1.75rem, 4vw, 2.6rem); font-weight: 700; }
+h2 { font-size: clamp(1.3rem, 2.6vw, 1.65rem); font-weight: 700; }
+h3 { font-size: 1.05rem; font-weight: 700; }
+p { margin: 0 0 1em; }
+/* Elemen antarmuka memakai font judul agar tetap tegas di ukuran kecil */
+.btn, .main-nav, .brand, .tag, .chip, .meta, .quick-item, .link-arrow, .link-back,
+.search input, .id-list dt, .welcome-name, .gallery-item span, .site-footer {
+  font-family: var(--font-head);
+}
+:focus-visible { outline: 3px solid var(--blue-500); outline-offset: 2px; border-radius: 6px; }
+
+.container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+.ic { width: 20px; height: 20px; flex: none; }
+.eyebrow { font-family: var(--font-head); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-600); margin-bottom: .4em; }
+.lead { font-size: 1.02rem; color: var(--muted); max-width: 60ch; }
+.empty { color: var(--muted); font-style: italic; margin: 0; }
+.skip-link { position: absolute; left: -999px; top: 8px; background: var(--blue-900); color: #fff; padding: 8px 14px; border-radius: 8px; z-index: 100; }
+.skip-link:focus { left: 8px; color: #fff; }
+
+/* ---------- Tombol ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: 999px;
+  font-weight: 600; font-size: .92rem; border: 1px solid transparent;
+  transition: background .15s, color .15s, border-color .15s; cursor: pointer;
+}
+.btn .ic { width: 18px; height: 18px; }
+.btn-sm { padding: 7px 14px; font-size: .85rem; }
+.btn-primary { background: var(--blue-600); color: #fff; }
+.btn-primary:hover { background: var(--blue-700); color: #fff; }
+.btn-outline { border-color: var(--blue-100); color: var(--blue-700); background: #fff; }
+.btn-outline:hover { border-color: var(--blue-600); }
+.btn-light { background: #fff; color: var(--blue-900); }
+.btn-light:hover { background: var(--blue-50); color: var(--blue-900); }
+.is-disabled { opacity: .55; cursor: not-allowed; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 255, 255, .92);
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid var(--line);
+  min-height: 61px;
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
+.brand { display: flex; align-items: center; gap: 12px; color: var(--ink); min-width: 0; }
+.brand:hover { color: var(--ink); }
+.brand img { width: 40px; height: auto; }
+.brand span { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+.brand strong { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--blue-900); }
+.brand small { font-size: .74rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.main-nav { display: flex; align-items: center; gap: 4px; }
+.main-nav .nav-links a {
+  padding: 7px 11px; border-radius: 8px; color: var(--muted);
+  font-size: .9rem; font-weight: 600; white-space: nowrap;
+}
+.main-nav .nav-links a:hover { color: var(--blue-900); background: var(--blue-50); }
+.main-nav .nav-links a.active { color: var(--blue-600); background: var(--blue-50); }
+.nav-cta { margin-left: 8px; }
+.nav-toggle {
+  display: none; width: 42px; height: 42px; border-radius: 10px;
+  border: 1px solid var(--line); background: #fff; color: var(--blue-900);
+  align-items: center; justify-content: center; cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .nav-toggle { display: inline-flex; }
+  .main-nav {
+    display: none; position: absolute; top: 60px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 2px;
+    padding: 12px 16px 20px; background: #fff;
+    border-bottom: 1px solid var(--line); box-shadow: var(--shadow);
+  }
+  .main-nav.open { display: flex; }
+  .main-nav .nav-links a { padding: 10px 12px; font-size: .95rem; }
+  .nav-cta { margin: 10px 0 0; justify-content: center; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background:
+    radial-gradient(900px 400px at 85% -10%, var(--blue-100), transparent 60%),
+    var(--blue-50);
+  border-bottom: 1px solid var(--line);
+}
+.hero-inner { display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: 40px; padding: 40px 16px 56px; }
+.hero h1 { color: var(--blue-900); }
+.hero h1 span { color: var(--blue-600); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.hero-logo { justify-self: center; position: relative; }
+.hero-logo::before {
+  content: ""; position: absolute; inset: -10%;
+  border-radius: 50%; background: #fff; box-shadow: var(--shadow);
+}
+.hero-logo img { position: relative; width: min(200px, 50vw); height: auto; }
+
+@media (max-width: 760px) {
+  .hero-inner { grid-template-columns: 1fr; padding: 32px 16px 48px; gap: 32px; text-align: center; }
+  .hero .lead { margin-inline: auto; }
+  .hero-actions { justify-content: center; }
+  .hero-logo { order: -1; }
+  .hero-logo img { width: 120px; }
+}
+
+/* ---------- Akses cepat ---------- */
+.quick { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: -30px; position: relative; }
+.quick-item {
+  display: flex; align-items: center; gap: 12px; padding: 14px;
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); color: var(--ink); transition: border-color .15s, transform .15s;
+}
+.quick-item:not(.is-disabled):hover { border-color: var(--blue-500); color: var(--ink); transform: translateY(-2px); }
+.quick-item span:last-child { display: flex; flex-direction: column; line-height: 1.3; }
+.quick-item strong { font-size: .97rem; }
+.quick-item small { color: var(--muted); font-size: .82rem; }
+.quick-ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--blue-50); color: var(--blue-600); flex: none; }
+@media (max-width: 900px) { .quick { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) {
+  .quick { gap: 10px; }
+  .quick-item { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px; }
+}
+
+/* ---------- Section ---------- */
+.block { padding: 44px 0; }
+.block-alt { background: var(--blue-50); border-block: 1px solid var(--line); }
+.block-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.block-head h2 { margin: 0; }
+.link-arrow { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+.link-arrow .ic { width: 18px; height: 18px; transition: transform .15s; }
+.link-arrow:hover .ic { transform: translateX(3px); }
+@media (max-width: 600px) { .block { padding: 36px 0; } }
+
+/* ---------- Kartu berita ---------- */
+.card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); }
+.card.pad { padding: 20px 22px; }
+.news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.news-card { overflow: hidden; display: flex; flex-direction: column; transition: box-shadow .15s, border-color .15s; }
+.news-card:hover { box-shadow: var(--shadow); border-color: var(--blue-100); }
+.news-thumb { display: block; aspect-ratio: 16 / 10; background: var(--blue-50); overflow: hidden; }
+.news-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.thumb-fallback { width: 100%; height: 100%; display: grid; place-items: center; color: var(--blue-500); background: linear-gradient(135deg, var(--blue-50), var(--blue-100)); }
+.thumb-fallback .ic { width: 44px; height: 44px; stroke-width: 1.4; }
+.news-body { padding: 14px 16px 16px; }
+.news-body h3 { margin: 6px 0; font-size: 1rem; }
+.news-body h3 a { color: var(--ink); }
+.news-body h3 a:hover { color: var(--blue-600); }
+.news-body p { color: var(--muted); font-size: .9rem; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: .83rem; color: var(--muted); }
+.tag { display: inline-block; padding: 2px 10px; border-radius: 999px; background: var(--blue-50); color: var(--blue-700); font-weight: 600; font-size: .78rem; }
+@media (max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+  .news-grid { grid-template-columns: 1fr; gap: 12px; }
+  .news-card { flex-direction: row; }
+  .news-thumb { flex: 0 0 112px; aspect-ratio: auto; min-height: 112px; }
+  .thumb-fallback .ic { width: 32px; height: 32px; }
+  .news-body { padding: 12px 14px; min-width: 0; }
+  .news-body h3 { font-size: .95rem; }
+  .news-body p { -webkit-line-clamp: 2; font-size: .86rem; }
+}
+
+/* ---------- Sambutan ---------- */
+.welcome { display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: center; }
+.welcome-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); }
+.welcome blockquote { margin: 0 0 12px; font-family: var(--font-head); font-size: clamp(1.15rem, 2.2vw, 1.4rem); font-weight: 700; line-height: 1.45; color: var(--blue-900); }
+.welcome-name { font-weight: 700; margin-bottom: 14px; }
+.welcome-name span { display: block; font-weight: 500; color: var(--muted); font-size: .9rem; }
+@media (max-width: 760px) { .welcome { grid-template-columns: 1fr; gap: 18px; } }
+
+/* ---------- Banner CTA ---------- */
+.cta-band {
+  background: var(--blue-900); color: #fff; border-radius: calc(var(--radius) + 6px);
+  padding: 28px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+}
+.cta-band h2 { color: #fff; margin-bottom: .3em; }
+.cta-band p { color: #c3d4f5; margin: 0; max-width: 56ch; }
+@media (max-width: 600px) { .cta-band { padding: 22px 18px; } }
+
+/* ---------- Header halaman ---------- */
+.page-head { background: var(--blue-50); border-bottom: 1px solid var(--line); padding: 32px 0 26px; }
+.page-head h1 { color: var(--blue-900); font-size: clamp(1.6rem, 3.5vw, 2.1rem); }
+.page-head .lead { margin: 0; }
+
+/* ---------- Profil ---------- */
+.profile-welcome { display: grid; grid-template-columns: 260px 1fr; gap: 28px; align-items: start; }
+@media (max-width: 760px) { .profile-welcome { grid-template-columns: 1fr; gap: 18px; } }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+.visi { font-size: 1.1rem; font-weight: 600; color: var(--blue-900); margin: 0; }
+.misi { margin: 0; padding-left: 1.2em; }
+.misi li { margin-bottom: .5em; }
+.id-list { margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.id-list div { padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.id-list dt { font-size: .8rem; color: var(--muted); font-weight: 600; }
+.id-list dd { margin: 2px 0 0; font-weight: 600; }
+
+/* ---------- Berita ---------- */
+.toolbar { display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 20px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { padding: 7px 16px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--muted); font-family: var(--font-head); font-size: .9rem; font-weight: 600; cursor: pointer; }
+.chip:hover { border-color: var(--blue-500); color: var(--blue-700); }
+.chip.active { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
+.search { position: relative; flex: 0 1 300px; }
+.search .ic { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); width: 18px; height: 18px; }
+.search input { width: 100%; padding: 11px 16px 11px 42px; border: 1px solid var(--line); border-radius: 999px; font-family: var(--font-head); font-size: .95rem; background: #fff; color: var(--ink); }
+.search input:focus { outline: none; border-color: var(--blue-500); box-shadow: 0 0 0 4px var(--blue-100); }
+@media (max-width: 600px) { .search { flex-basis: 100%; } }
+
+/* ---------- Artikel ---------- */
+.article { max-width: 760px; margin: 0 auto; padding: 28px 16px 52px; }
+.article h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); color: var(--blue-900); margin: 10px 0 18px; }
+.article-img { width: 100%; border-radius: var(--radius); margin-bottom: 20px; border: 1px solid var(--line); }
+.link-back { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: .92rem; margin-bottom: 14px; }
+.link-back .ic { width: 18px; height: 18px; }
+.prose { font-size: 1rem; }
+.prose p { margin-bottom: .9em; }
+
+/* ---------- Galeri ---------- */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.gallery-item { position: relative; padding: 0; border: 0; border-radius: 12px; overflow: hidden; cursor: zoom-in; aspect-ratio: 1; background: var(--blue-50); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+.gallery-item:hover img { transform: scale(1.04); }
+.gallery-item span { position: absolute; left: 0; right: 0; bottom: 0; padding: 24px 12px 10px; color: #fff; font-size: .85rem; font-weight: 600; text-align: left; background: linear-gradient(transparent, rgba(10, 31, 68, .8)); }
+.lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 960px); }
+.lightbox::backdrop { background: rgba(10, 31, 68, .85); }
+.lightbox img { max-height: 82vh; width: auto; margin: 0 auto; border-radius: 10px; }
+.lightbox p { color: #fff; text-align: center; margin: 12px 0 0; }
+
+/* ---------- BK ---------- */
+.service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.service-grid .card { padding: 18px; }
+.service-grid .quick-ic { margin-bottom: 10px; }
+.service-grid p { color: var(--muted); font-size: .9rem; margin: 0; }
+@media (max-width: 900px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .service-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--blue-950); color: #b9c8e6; font-size: .9rem; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; padding-top: 36px; padding-bottom: 28px; }
+.footer-brand { display: flex; gap: 14px; align-items: flex-start; }
+.footer-brand strong { font-family: var(--font-head); color: #fff; font-size: 1rem; }
+.footer-brand p { margin: 4px 0 0; }
+.site-footer h3 { color: #fff; font-size: .92rem; margin-bottom: 10px; }
+.footer-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.footer-list li { display: flex; gap: 10px; align-items: flex-start; }
+.footer-list .ic { width: 18px; height: 18px; margin-top: 3px; color: var(--blue-500); }
+.site-footer a { color: #b9c8e6; }
+.site-footer a:hover { color: #fff; }
+.footer-bottom { border-top: 1px solid rgba(255, 255, 255, .1); padding-top: 14px; padding-bottom: 18px; font-size: .82rem; color: #8193b8; }
+@media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 22px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ============================================================
+   Tambahan khusus Blogger (digabung setelah assets/css/style.css)
+   ============================================================ */
+
+/* Blogger membungkus setiap widget dengan div.section > div.widget */
+.section { margin: 0; padding: 0; }
+.widget { margin: 0; }
+.header-inner .section { min-width: 0; }
+
+/* Menu: tautan berada di dalam div.widget, bukan anak langsung nav */
+.main-nav .section, .main-nav .widget { display: flex; align-items: center; gap: 4px; }
+.main-nav .nav-links a {
+  padding: 7px 11px; border-radius: 8px; color: var(--muted);
+  font-size: .9rem; font-weight: 600; white-space: nowrap;
+}
+.main-nav .nav-links a:hover { color: var(--blue-900); background: var(--blue-50); }
+.main-nav .nav-links a.active { color: var(--blue-600); background: var(--blue-50); }
+@media (max-width: 1000px) {
+  .main-nav .section, .main-nav .widget, .main-nav .nav-links { flex-direction: column; align-items: stretch; gap: 2px; }
+  .main-nav .nav-links a { padding: 10px 12px; font-size: .95rem; }
+  .main-nav .btn { justify-content: center; margin: 10px 0 0; }
+}
+.nav-links { display: flex; align-items: center; gap: 4px; }
+
+/* Judul blog pada hero */
+.hero h1 { color: var(--blue-900); }
+.hero-logo:empty { display: none; }
+.hero-logo::before { display: none; }
+.hero-logo .widget {
+  position: relative; width: 240px; aspect-ratio: 1; border-radius: 50%;
+  background: #fff; box-shadow: var(--shadow); display: grid; place-items: center;
+}
+.hero-logo .widget img { width: 72%; height: auto; }
+@media (max-width: 760px) { .hero-logo .widget { width: 150px; } }
+
+/* Akses cepat: ikon dipasang lewat CSS sesuai urutan tautan */
+.quick .widget { display: contents; }
+.quick-item strong { font-family: var(--font-head); }
+.quick-ic { font-size: 0; position: relative; }
+.quick-ic::before {
+  content: ""; position: absolute; inset: 0; margin: auto; width: 20px; height: 20px; background: currentColor;
+  -webkit-mask: var(--qi) center / contain no-repeat; mask: var(--qi) center / contain no-repeat;
+}
+.quick-item:nth-child(4n+1) { --qi: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='4' width='7' height='7' rx='1.5'/%3E%3Crect x='13' y='4' width='7' height='7' rx='1.5'/%3E%3Crect x='4' y='13' width='7' height='7' rx='1.5'/%3E%3Crect x='13' y='13' width='7' height='7' rx='1.5'/%3E%3C/svg%3E"); }
+.quick-item:nth-child(4n+2) { --qi: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15z'/%3E%3Cpath d='M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5'/%3E%3C/svg%3E"); }
+.quick-item:nth-child(4n+3) { --qi: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z'/%3E%3C/svg%3E"); }
+.quick-item:nth-child(4n+4) { --qi: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='16' rx='2'/%3E%3Ccircle cx='9' cy='10' r='2'/%3E%3Cpath d='M21 16l-5-5-9 9'/%3E%3C/svg%3E"); }
+
+/* Sambutan & CTA dari widget */
+.welcome-text blockquote { white-space: pre-line; }
+.cta-content p { color: #c3d4f5; margin: 0 0 14px; max-width: 60ch; }
+.cta-content .btn { margin-top: 2px; }
+
+/* Daftar berita */
+.news-grid:empty { display: none; }
+.news-grid:empty + .no-posts { display: block; }
+.no-posts { display: none; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.pager .older { margin-left: auto; }
+.toolbar .widget { display: contents; }
+.chips a.chip { display: inline-block; }
+
+/* Artikel & halaman statis */
+.view-single .main-section { padding-top: 0; }
+.article-page { max-width: 1120px; }
+.article-page > h1 { margin-top: 24px; }
+.post-body { overflow-wrap: break-word; }
+.post-body img { height: auto; border-radius: 10px; }
+.post-body .separator a, .post-body a[imageanchor] { margin: 0 !important; display: inline-block; }
+.post-body h2, .post-body h3, .post-body h4 { margin: 1.4em 0 .5em; color: var(--blue-900); }
+.post-body ul, .post-body ol { padding-left: 1.3em; margin: 0 0 1em; }
+.post-body li { margin-bottom: .35em; }
+.post-body blockquote { margin: 1.2em 0; padding: 12px 18px; border-left: 4px solid var(--blue-500); background: var(--blue-50); border-radius: 0 10px 10px 0; }
+.post-body table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: .95rem; }
+.post-body th, .post-body td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; }
+.post-body th { background: var(--blue-50); font-family: var(--font-head); }
+.post-body iframe { max-width: 100%; }
+.post-body .block { padding: 0 0 32px; }
+.post-body .block-head { margin-bottom: 14px; }
+.post-body .card h3 { margin-top: 0; }
+
+/* Footer dari widget */
+.site-footer .widget h3 { margin-top: 0; }
+.footer-html p { margin: 0 0 6px; }
+.footer-grid > .section:empty { display: none; }
+
+/* Halaman 404 */
+.not-found { text-align: center; padding: 64px 16px; }
+]]></b:skin>
+</head>
+<body expr:class='data:view.isSingleItem ? &quot;view-single&quot; : &quot;view-list&quot;'>
+<a class='skip-link' href='#konten'>Lewati ke konten</a>
+
+<!-- ==================== HEADER ==================== -->
+<header class='site-header'>
+  <div class='container header-inner'>
+    <b:section class='brand-wrap' id='brand' maxwidgets='1' name='Logo &amp; Nama Sekolah' showaddelement='no'>
+      <b:widget id='Header1' locked='true' title='SMP Negeri 65 Batam (Header)' type='Header' version='1' visible='true'>
+        <b:includable id='main'>
+          <a class='brand' expr:href='data:blog.homepageUrl'>
+            <b:if cond='data:useImage'>
+              <img expr:alt='data:title' expr:src='data:sourceUrl' height='40' width='40'/>
+            </b:if>
+            <span><strong><data:title/></strong><small><data:description/></small></span>
+          </a>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+    <button aria-controls='main-nav' aria-expanded='false' aria-label='Buka menu' class='nav-toggle' type='button'>
+      <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M4 7h16M4 12h16M4 17h16'/></svg>
+    </button>
+
+    <nav aria-label='Menu utama' class='main-nav' id='main-nav'>
+      <b:section class='nav-section' id='menu' maxwidgets='2' name='Menu Utama' showaddelement='no'>
+        <b:widget id='LinkList1' locked='true' title='Menu' type='LinkList' version='1' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='sorting'>NONE</b:widget-setting>
+            <b:widget-setting name='text-0'>Beranda</b:widget-setting>
+            <b:widget-setting name='link-0'>/</b:widget-setting>
+            <b:widget-setting name='text-1'>Profil</b:widget-setting>
+            <b:widget-setting name='link-1'>/p/profil.html</b:widget-setting>
+            <b:widget-setting name='text-2'>Berita</b:widget-setting>
+            <b:widget-setting name='link-2'>/search</b:widget-setting>
+            <b:widget-setting name='text-3'>Literasi Digital</b:widget-setting>
+            <b:widget-setting name='link-3'>/search/label/Literasi</b:widget-setting>
+            <b:widget-setting name='text-4'>Album</b:widget-setting>
+            <b:widget-setting name='link-4'>/p/album.html</b:widget-setting>
+            <b:widget-setting name='text-5'>Layanan BK</b:widget-setting>
+            <b:widget-setting name='link-5'>/p/layanan-bk.html</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='nav-links'>
+              <b:loop values='data:links' var='link'>
+                <a expr:href='data:link.target'><data:link.name/></a>
+              </b:loop>
+            </div>
+          </b:includable>
+        </b:widget>
+        <b:widget id='LinkList2' locked='true' title='Tombol Aplikasi' type='LinkList' version='1' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='sorting'>NONE</b:widget-setting>
+            <b:widget-setting name='text-0'>SIMANTAP 65</b:widget-setting>
+            <b:widget-setting name='link-0'>#</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <b:loop values='data:links' var='link'>
+              <a class='btn btn-primary btn-sm nav-cta' expr:href='data:link.target' rel='noopener' target='_blank'>
+                <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><rect height='7' rx='1.5' width='7' x='4' y='4'/><rect height='7' rx='1.5' width='7' x='13' y='4'/><rect height='7' rx='1.5' width='7' x='4' y='13'/><rect height='7' rx='1.5' width='7' x='13' y='13'/></svg>
+                <data:link.name/>
+              </a>
+            </b:loop>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </nav>
+  </div>
+</header>
+
+<main id='konten'>
+
+<!-- ==================== BERANDA: HERO + AKSES CEPAT ==================== -->
+<b:if cond='data:view.isHomepage'>
+  <section class='hero'>
+    <div class='container hero-inner'>
+      <div>
+        <p class='eyebrow'>Selamat datang di website</p>
+        <h1><data:blog.title/></h1>
+        <p class='lead'>Media informasi dan pengumuman sekolah untuk siswa, orang tua, dan masyarakat.</p>
+        <div class='hero-actions'>
+          <a class='btn btn-primary' expr:href='data:blog.homepageUrl + &quot;search&quot;'>Berita &amp; Pengumuman</a>
+          <a class='btn btn-outline' expr:href='data:blog.homepageUrl + &quot;p/profil.html&quot;'>Profil Sekolah</a>
+        </div>
+      </div>
+      <b:section class='hero-logo' id='hero-logo' maxwidgets='1' name='Logo Besar (Beranda)' showaddelement='no'>
+        <b:widget id='Image1' locked='true' title='Logo SMP Negeri 65 Batam' type='Image' version='1' visible='true'>
+          <b:includable id='main'>
+            <b:if cond='data:sourceUrl'>
+              <img expr:alt='data:title' expr:src='data:sourceUrl'/>
+            </b:if>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </section>
+
+  <div class='container'>
+    <b:section class='quick-section' id='quick' maxwidgets='1' name='Akses Cepat (Beranda)' showaddelement='no'>
+      <b:widget id='LinkList3' locked='true' title='Akses Cepat' type='LinkList' version='1' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='sorting'>NONE</b:widget-setting>
+          <b:widget-setting name='text-0'>SIMANTAP 65</b:widget-setting>
+          <b:widget-setting name='link-0'>#</b:widget-setting>
+          <b:widget-setting name='text-1'>Literasi Digital</b:widget-setting>
+          <b:widget-setting name='link-1'>/search/label/Literasi</b:widget-setting>
+          <b:widget-setting name='text-2'>Layanan BK</b:widget-setting>
+          <b:widget-setting name='link-2'>/p/layanan-bk.html</b:widget-setting>
+          <b:widget-setting name='text-3'>Album</b:widget-setting>
+          <b:widget-setting name='link-3'>/p/album.html</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <nav aria-label='Akses cepat' class='quick'>
+            <b:loop values='data:links' var='link'>
+              <a class='quick-item' expr:href='data:link.target'>
+                <span aria-hidden='true' class='quick-ic'>&#160;</span>
+                <span><strong><data:link.name/></strong></span>
+              </a>
+            </b:loop>
+          </nav>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+</b:if>
+
+<!-- ==================== JUDUL HALAMAN DAFTAR ==================== -->
+<b:if cond='data:view.isMultipleItems and not data:view.isHomepage'>
+  <section class='page-head'>
+    <div class='container'>
+      <b:if cond='data:view.isLabelSearch'>
+        <p class='eyebrow'>Kategori</p>
+        <h1><data:view.search.label/></h1>
+      <b:elseif cond='data:view.isSearch and data:view.search.query'/>
+        <p class='eyebrow'>Hasil pencarian</p>
+        <h1>&#8220;<data:view.search.query/>&#8221;</h1>
+      <b:elseif cond='data:view.isArchive'/>
+        <p class='eyebrow'>Arsip</p>
+        <h1><data:view.title/></h1>
+      <b:else/>
+        <p class='eyebrow'>Informasi</p>
+        <h1>Berita &amp; Pengumuman</h1>
+        <p class='lead'>Kabar terbaru, pengumuman, dan kegiatan sekolah.</p>
+      </b:if>
+    </div>
+  </section>
+</b:if>
+
+<!-- ==================== KONTEN UTAMA ==================== -->
+<section class='block main-section'>
+  <div class='container'>
+
+    <b:if cond='data:view.isHomepage'>
+      <div class='block-head'>
+        <div><p class='eyebrow'>Terbaru</p><h2>Berita &amp; Pengumuman</h2></div>
+        <a class='link-arrow' expr:href='data:blog.homepageUrl + &quot;search&quot;'>Lihat semua
+          <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M5 12h14M13 6l6 6-6 6'/></svg>
+        </a>
+      </div>
+    </b:if>
+
+    <b:if cond='data:view.isMultipleItems and not data:view.isHomepage'>
+      <div class='toolbar'>
+        <b:section class='chips-section' id='labels' maxwidgets='1' name='Kategori (Halaman Berita)' showaddelement='no'>
+          <b:widget id='Label1' locked='true' title='Kategori' type='Label' version='1' visible='true'>
+            <b:includable id='main'>
+              <div aria-label='Filter kategori' class='chips'>
+                <a class='chip' expr:href='data:blog.homepageUrl + &quot;search&quot;'>Semua</a>
+                <b:loop values='data:labels' var='label'>
+                  <a class='chip' expr:href='data:label.url'><data:label.name/></a>
+                </b:loop>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+        <form class='search' expr:action='data:blog.homepageUrl + &quot;search&quot;' method='get' role='search'>
+          <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-width='1.8' viewBox='0 0 24 24'><circle cx='11' cy='11' r='7'/><path d='M20 20l-3.5-3.5'/></svg>
+          <input aria-label='Cari berita' expr:value='data:view.search.query' name='q' placeholder='Cari berita…' type='search'/>
+        </form>
+      </div>
+    </b:if>
+
+    <b:if cond='data:view.isError'>
+      <div class='not-found'>
+        <h1>Halaman tidak ditemukan</h1>
+        <p class='lead' style='margin-inline:auto'>Halaman yang Anda cari mungkin sudah dipindahkan atau dihapus.</p>
+        <a class='btn btn-primary' expr:href='data:blog.homepageUrl'>Kembali ke beranda</a>
+      </div>
+    </b:if>
+
+    <b:section class='main' id='main' maxwidgets='1' name='Postingan' showaddelement='no'>
+      <b:widget id='Blog1' locked='true' title='Postingan Blog' type='Blog' version='2' visible='true'>
+        <b:includable id='main'>
+          <b:if cond='data:view.isSingleItem'>
+            <b:loop values='data:posts' var='post'>
+              <b:include data='post' name='singlePost'/>
+            </b:loop>
+          <b:else/>
+            <div class='news-grid'><b:loop values='data:posts' var='post'><b:include data='post' name='postCard'/></b:loop></div>
+            <p class='empty no-posts'>Belum ada berita.</p>
+            <b:if cond='not data:view.isHomepage'>
+              <nav aria-label='Halaman berita' class='pager'>
+                <b:if cond='data:newerPageUrl'>
+                  <a class='btn btn-outline newer' expr:href='data:newerPageUrl'>&#8592; Lebih baru</a>
+                </b:if>
+                <b:if cond='data:olderPageUrl'>
+                  <a class='btn btn-outline older' expr:href='data:olderPageUrl'>Lebih lama &#8594;</a>
+                </b:if>
+              </nav>
+            </b:if>
+          </b:if>
+        </b:includable>
+
+        <!-- Kartu berita pada beranda, halaman berita, label, dan pencarian -->
+        <b:includable id='postCard' var='post'>
+          <article class='card news-card'>
+            <a aria-hidden='true' class='news-thumb' expr:href='data:post.url' tabindex='-1'>
+              <b:if cond='data:post.featuredImage'>
+                <img alt='' expr:src='resizeImage(data:post.featuredImage, 800, &quot;16:10&quot;)' loading='lazy'/>
+              <b:else/>
+                <div class='thumb-fallback'>
+                  <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><rect height='16' rx='2' width='18' x='3' y='4'/><path d='M7 8h10M7 12h10M7 16h6'/></svg>
+                </div>
+              </b:if>
+            </a>
+            <div class='news-body'>
+              <div class='meta'>
+                <b:loop index='i' values='data:post.labels' var='label'>
+                  <b:if cond='data:i == 0'>
+                    <a class='tag' expr:href='data:label.url'><data:label.name/></a>
+                  </b:if>
+                </b:loop>
+                <time expr:datetime='data:post.date.iso8601'><data:post.date/></time>
+              </div>
+              <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
+              <p><b:eval expr='snippet(data:post.body, {length: 160, links: false, linebreaks: false})'/></p>
+            </div>
+          </article>
+        </b:includable>
+
+        <!-- Isi berita dan halaman statis -->
+        <b:includable id='singlePost' var='post'>
+          <article expr:class='data:view.isPage ? &quot;article article-page&quot; : &quot;article&quot;'>
+            <b:if cond='data:view.isPost'>
+              <a class='link-back' expr:href='data:blog.homepageUrl + &quot;search&quot;'>
+                <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M19 12H5M11 6l-6 6 6 6'/></svg>
+                Semua berita
+              </a>
+              <div class='meta'>
+                <b:loop values='data:post.labels' var='label'>
+                  <a class='tag' expr:href='data:label.url'><data:label.name/></a>
+                </b:loop>
+                <time expr:datetime='data:post.date.iso8601'><data:post.date/></time>
+              </div>
+            </b:if>
+            <h1><data:post.title/></h1>
+            <div class='prose post-body'><data:post.body/></div>
+          </article>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+</section>
+
+<!-- ==================== BERANDA: SAMBUTAN + AJAKAN ==================== -->
+<b:if cond='data:view.isHomepage'>
+  <section class='block block-alt'>
+    <div class='container'>
+      <b:section class='welcome-section' id='sambutan' maxwidgets='1' name='Sambutan Kepala Sekolah (Beranda)' showaddelement='no'>
+        <b:widget id='Image2' locked='true' title='Sambutan Kepala Sekolah' type='Image' version='1' visible='true'>
+          <b:includable id='main'>
+            <div class='welcome'>
+              <b:if cond='data:sourceUrl'>
+                <img class='welcome-photo' expr:alt='data:title' expr:src='data:sourceUrl' loading='lazy'/>
+              </b:if>
+              <div class='welcome-text'>
+                <p class='eyebrow'><data:title/></p>
+                <blockquote><data:caption/></blockquote>
+                <b:if cond='data:link'>
+                  <a class='link-arrow' expr:href='data:link'>Baca sambutan
+                    <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M5 12h14M13 6l6 6-6 6'/></svg>
+                  </a>
+                </b:if>
+              </div>
+            </div>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </section>
+
+  <section class='block'>
+    <div class='container'>
+      <b:section class='cta-section' id='ajakan' maxwidgets='1' name='Ajakan (Beranda)' showaddelement='no'>
+        <b:widget id='HTML1' locked='true' title='Ada yang ingin kamu ceritakan?' type='HTML' version='1' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='content'><![CDATA[<p>Portal Sekolah Ramah Anak dan layanan Bimbingan Konseling siap menjadi ruang aman untuk bercerita.</p>
+<a class="btn btn-light" href="/p/layanan-bk.html">Layanan BK</a>]]></b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='cta-band'>
+              <div>
+                <h2><data:title/></h2>
+                <div class='cta-content'><data:content/></div>
+              </div>
+            </div>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </section>
+</b:if>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class='site-footer'>
+  <div class='container footer-grid'>
+    <div class='footer-brand'>
+      <div>
+        <strong><data:blog.title/></strong>
+        <p>Media Informasi &amp; Pengumuman Sekolah</p>
+      </div>
+    </div>
+    <b:section class='footer-links' id='footer-links' maxwidgets='1' name='Footer: Tautan' showaddelement='no'>
+      <b:widget id='LinkList4' locked='true' title='Tautan' type='LinkList' version='1' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='sorting'>NONE</b:widget-setting>
+          <b:widget-setting name='text-0'>Profil</b:widget-setting>
+          <b:widget-setting name='link-0'>/p/profil.html</b:widget-setting>
+          <b:widget-setting name='text-1'>Berita</b:widget-setting>
+          <b:widget-setting name='link-1'>/search</b:widget-setting>
+          <b:widget-setting name='text-2'>Literasi Digital</b:widget-setting>
+          <b:widget-setting name='link-2'>/search/label/Literasi</b:widget-setting>
+          <b:widget-setting name='text-3'>Album</b:widget-setting>
+          <b:widget-setting name='link-3'>/p/album.html</b:widget-setting>
+          <b:widget-setting name='text-4'>Layanan BK</b:widget-setting>
+          <b:widget-setting name='link-4'>/p/layanan-bk.html</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <h3><data:title/></h3>
+          <ul class='footer-list'>
+            <b:loop values='data:links' var='link'>
+              <li><a expr:href='data:link.target'><data:link.name/></a></li>
+            </b:loop>
+          </ul>
+        </b:includable>
+      </b:widget>
+    </b:section>
+    <b:section class='footer-contact' id='footer-contact' maxwidgets='1' name='Footer: Kontak' showaddelement='no'>
+      <b:widget id='HTML2' locked='true' title='Kontak' type='HTML' version='1' visible='true'>
+        <b:includable id='main'>
+          <b:if cond='data:content'>
+            <h3><data:title/></h3>
+            <div class='footer-html'><data:content/></div>
+          </b:if>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+  <div class='container footer-bottom'>&#169; <span data-year='true'>2026</span> <data:blog.title/></div>
+</footer>
+
+<dialog aria-label='Pratinjau foto' class='lightbox' id='lightbox'><img alt=''/><p>&#160;</p></dialog>
+
+<script>
+//<![CDATA[
+(function () {
+  "use strict";
+  // Menu ponsel
+  var btn = document.querySelector(".nav-toggle"), nav = document.getElementById("main-nav");
+  if (btn && nav) {
+    btn.addEventListener("click", function () {
+      var open = nav.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open);
+      btn.setAttribute("aria-label", open ? "Tutup menu" : "Buka menu");
+    });
+  }
+
+  // Penanda menu aktif
+  function clean(path) {
+    try { path = decodeURIComponent(path); } catch (e) {}
+    return path.replace(/\/+$/, "") || "/";
+  }
+  var here = clean(location.pathname);
+  var links = [].slice.call(document.querySelectorAll(".nav-links a"));
+  var match = null;
+  links.forEach(function (a) {
+    var u = new URL(a.getAttribute("href"), location.href);
+    if (u.host === location.host && clean(u.pathname) === here) match = a;
+  });
+  if (!match && (/^\/\d{4}\/\d{2}\//.test(here) || here.indexOf("/search") === 0)) {
+    links.forEach(function (a) {
+      var u = new URL(a.getAttribute("href"), location.href);
+      if (u.host === location.host && clean(u.pathname) === "/search") match = a;
+    });
+  }
+  if (match) { match.classList.add("active"); match.setAttribute("aria-current", "page"); }
+
+  // Penanda kategori aktif
+  var q = new URLSearchParams(location.search).get("q");
+  [].slice.call(document.querySelectorAll(".chips a")).forEach(function (a) {
+    var u = new URL(a.getAttribute("href"), location.href);
+    if (clean(u.pathname) === here && !(here === "/search" && q)) a.classList.add("active");
+  });
+
+  // Tombol eksternal yang belum diisi (#) tampil nonaktif
+  [].slice.call(document.querySelectorAll('a[href="#"]')).forEach(function (a) {
+    a.classList.add("is-disabled");
+    a.setAttribute("aria-disabled", "true");
+    a.setAttribute("title", "Tautan belum diatur");
+    a.removeAttribute("target");
+    a.addEventListener("click", function (e) { e.preventDefault(); });
+  });
+
+  // Tahun di footer
+  [].slice.call(document.querySelectorAll("[data-year]")).forEach(function (el) {
+    el.textContent = new Date().getFullYear();
+  });
+
+  // Album: klik foto untuk memperbesar
+  var dlg = document.getElementById("lightbox");
+  document.addEventListener("click", function (e) {
+    var it = e.target.closest && e.target.closest(".gallery a.gallery-item");
+    if (!it || !dlg || !dlg.showModal) return;
+    e.preventDefault();
+    var img = it.querySelector("img");
+    dlg.querySelector("img").src = it.getAttribute("href");
+    dlg.querySelector("img").alt = img ? img.alt : "";
+    dlg.querySelector("p").textContent = img ? img.alt : "";
+    dlg.showModal();
+  });
+  if (dlg) dlg.addEventListener("click", function () { dlg.close(); });
+})();
+//]]>
+</script>
+</body>
+</html>

@@ -1,6 +1,9 @@
 # Website SMP Negeri 65 Batam
 
-Website sekolah bertema biru dan minimalis: HTML, CSS, dan JavaScript murni tanpa *build*.
+Desain website sekolah bertema biru dan minimalis.
+
+- **Tema Blogger** (untuk dipasang di situs sekolah): `blogger/tema-smpn65batam.xml` — lihat [`blogger/PANDUAN.md`](blogger/PANDUAN.md).
+- **Prototipe statis** (HTML, CSS, JavaScript murni) untuk melihat desain: file `*.html` di folder utama.
 
 ## Halaman
 | File | Isi |

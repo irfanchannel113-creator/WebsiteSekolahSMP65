@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' lang='id' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<b:include data='blog' name='all-head-content'/>
+<b:if cond='data:view.isHomepage'>
+<title><data:blog.title.escaped/></title>
+<b:else/>
+<title><data:view.title.escaped/> | <data:blog.title.escaped/></title>
+</b:if>
+<meta content='#0d2a5c' name='theme-color'/>
+<link href='https://fonts.googleapis.com' rel='preconnect'/>
+<link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+<link href='https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;family=Schibsted+Grotesk:wght@500;600;700&amp;display=swap' rel='stylesheet'/>
+<b:skin version='1.0.0'><![CDATA[
+/*
+ * Tema SMPN 65 Batam — biru minimalis
+ * Dibuat dari desain di folder assets/ pada repositori WebsiteSekolahSMP65.
+ */
+%%CSS%%
+]]></b:skin>
+</head>
+<body expr:class='data:view.isSingleItem ? &quot;view-single&quot; : &quot;view-list&quot;'>
+<a class='skip-link' href='#konten'>Lewati ke konten</a>
+
+<!-- ==================== HEADER ==================== -->
+<header class='site-header'>
+  <div class='container header-inner'>
+    <b:section class='brand-wrap' id='brand' maxwidgets='1' name='Logo &amp; Nama Sekolah' showaddelement='no'>
+      <b:widget id='Header1' locked='true' title='SMP Negeri 65 Batam (Header)' type='Header' version='1' visible='true'>
+        <b:includable id='main'>
+          <a class='brand' expr:href='data:blog.homepageUrl'>
+            <b:if cond='data:useImage'>
+              <img expr:alt='data:title' expr:src='data:sourceUrl' height='40' width='40'/>
+            </b:if>
+            <span><strong><data:title/></strong><small><data:description/></small></span>
+          </a>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+    <button aria-controls='main-nav' aria-expanded='false' aria-label='Buka menu' class='nav-toggle' type='button'>
+      <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M4 7h16M4 12h16M4 17h16'/></svg>
+    </button>
+
+    <nav aria-label='Menu utama' class='main-nav' id='main-nav'>
+      <b:section class='nav-section' id='menu' maxwidgets='2' name='Menu Utama' showaddelement='no'>
+        <b:widget id='LinkList1' locked='true' title='Menu' type='LinkList' version='1' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='sorting'>NONE</b:widget-setting>
+            <b:widget-setting name='text-0'>Beranda</b:widget-setting>
+            <b:widget-setting name='link-0'>/</b:widget-setting>
+            <b:widget-setting name='text-1'>Profil</b:widget-setting>
+            <b:widget-setting name='link-1'>/p/profil.html</b:widget-setting>
+            <b:widget-setting name='text-2'>Berita</b:widget-setting>
+            <b:widget-setting name='link-2'>/search</b:widget-setting>
+            <b:widget-setting name='text-3'>Literasi Digital</b:widget-setting>
+            <b:widget-setting name='link-3'>/search/label/Literasi</b:widget-setting>
+            <b:widget-setting name='text-4'>Album</b:widget-setting>
+            <b:widget-setting name='link-4'>/p/album.html</b:widget-setting>
+            <b:widget-setting name='text-5'>Layanan BK</b:widget-setting>
+            <b:widget-setting name='link-5'>/p/layanan-bk.html</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='nav-links'>
+              <b:loop values='data:links' var='link'>
+                <a expr:href='data:link.target'><data:link.name/></a>
+              </b:loop>
+            </div>
+          </b:includable>
+        </b:widget>
+        <b:widget id='LinkList2' locked='true' title='Tombol Aplikasi' type='LinkList' version='1' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='sorting'>NONE</b:widget-setting>
+            <b:widget-setting name='text-0'>SIMANTAP 65</b:widget-setting>
+            <b:widget-setting name='link-0'>#</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <b:loop values='data:links' var='link'>
+              <a class='btn btn-primary btn-sm nav-cta' expr:href='data:link.target' rel='noopener' target='_blank'>
+                <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><rect height='7' rx='1.5' width='7' x='4' y='4'/><rect height='7' rx='1.5' width='7' x='13' y='4'/><rect height='7' rx='1.5' width='7' x='4' y='13'/><rect height='7' rx='1.5' width='7' x='13' y='13'/></svg>
+                <data:link.name/>
+              </a>
+            </b:loop>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </nav>
+  </div>
+</header>
+
+<main id='konten'>
+
+<!-- ==================== BERANDA: HERO + AKSES CEPAT ==================== -->
+<b:if cond='data:view.isHomepage'>
+  <section class='hero'>
+    <div class='container hero-inner'>
+      <div>
+        <p class='eyebrow'>Selamat datang di website</p>
+        <h1><data:blog.title/></h1>
+        <p class='lead'>Media informasi dan pengumuman sekolah untuk siswa, orang tua, dan masyarakat.</p>
+        <div class='hero-actions'>
+          <a class='btn btn-primary' expr:href='data:blog.homepageUrl + &quot;search&quot;'>Berita &amp; Pengumuman</a>
+          <a class='btn btn-outline' expr:href='data:blog.homepageUrl + &quot;p/profil.html&quot;'>Profil Sekolah</a>
+        </div>
+      </div>
+      <b:section class='hero-logo' id='hero-logo' maxwidgets='1' name='Logo Besar (Beranda)' showaddelement='no'>
+        <b:widget id='Image1' locked='true' title='Logo SMP Negeri 65 Batam' type='Image' version='1' visible='true'>
+          <b:includable id='main'>
+            <b:if cond='data:sourceUrl'>
+              <img expr:alt='data:title' expr:src='data:sourceUrl'/>
+            </b:if>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </section>
+
+  <div class='container'>
+    <b:section class='quick-section' id='quick' maxwidgets='1' name='Akses Cepat (Beranda)' showaddelement='no'>
+      <b:widget id='LinkList3' locked='true' title='Akses Cepat' type='LinkList' version='1' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='sorting'>NONE</b:widget-setting>
+          <b:widget-setting name='text-0'>SIMANTAP 65</b:widget-setting>
+          <b:widget-setting name='link-0'>#</b:widget-setting>
+          <b:widget-setting name='text-1'>Literasi Digital</b:widget-setting>
+          <b:widget-setting name='link-1'>/search/label/Literasi</b:widget-setting>
+          <b:widget-setting name='text-2'>Layanan BK</b:widget-setting>
+          <b:widget-setting name='link-2'>/p/layanan-bk.html</b:widget-setting>
+          <b:widget-setting name='text-3'>Album</b:widget-setting>
+          <b:widget-setting name='link-3'>/p/album.html</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <nav aria-label='Akses cepat' class='quick'>
+            <b:loop values='data:links' var='link'>
+              <a class='quick-item' expr:href='data:link.target'>
+                <span aria-hidden='true' class='quick-ic'>&#160;</span>
+                <span><strong><data:link.name/></strong></span>
+              </a>
+            </b:loop>
+          </nav>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+</b:if>
+
+<!-- ==================== JUDUL HALAMAN DAFTAR ==================== -->
+<b:if cond='data:view.isMultipleItems and not data:view.isHomepage'>
+  <section class='page-head'>
+    <div class='container'>
+      <b:if cond='data:view.isLabelSearch'>
+        <p class='eyebrow'>Kategori</p>
+        <h1><data:view.search.label/></h1>
+      <b:elseif cond='data:view.isSearch and data:view.search.query'/>
+        <p class='eyebrow'>Hasil pencarian</p>
+        <h1>&#8220;<data:view.search.query/>&#8221;</h1>
+      <b:elseif cond='data:view.isArchive'/>
+        <p class='eyebrow'>Arsip</p>
+        <h1><data:view.title/></h1>
+      <b:else/>
+        <p class='eyebrow'>Informasi</p>
+        <h1>Berita &amp; Pengumuman</h1>
+        <p class='lead'>Kabar terbaru, pengumuman, dan kegiatan sekolah.</p>
+      </b:if>
+    </div>
+  </section>
+</b:if>
+
+<!-- ==================== KONTEN UTAMA ==================== -->
+<section class='block main-section'>
+  <div class='container'>
+
+    <b:if cond='data:view.isHomepage'>
+      <div class='block-head'>
+        <div><p class='eyebrow'>Terbaru</p><h2>Berita &amp; Pengumuman</h2></div>
+        <a class='link-arrow' expr:href='data:blog.homepageUrl + &quot;search&quot;'>Lihat semua
+          <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M5 12h14M13 6l6 6-6 6'/></svg>
+        </a>
+      </div>
+    </b:if>
+
+    <b:if cond='data:view.isMultipleItems and not data:view.isHomepage'>
+      <div class='toolbar'>
+        <b:section class='chips-section' id='labels' maxwidgets='1' name='Kategori (Halaman Berita)' showaddelement='no'>
+          <b:widget id='Label1' locked='true' title='Kategori' type='Label' version='1' visible='true'>
+            <b:includable id='main'>
+              <div aria-label='Filter kategori' class='chips'>
+                <a class='chip' expr:href='data:blog.homepageUrl + &quot;search&quot;'>Semua</a>
+                <b:loop values='data:labels' var='label'>
+                  <a class='chip' expr:href='data:label.url'><data:label.name/></a>
+                </b:loop>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+        <form class='search' expr:action='data:blog.homepageUrl + &quot;search&quot;' method='get' role='search'>
+          <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-width='1.8' viewBox='0 0 24 24'><circle cx='11' cy='11' r='7'/><path d='M20 20l-3.5-3.5'/></svg>
+          <input aria-label='Cari berita' expr:value='data:view.search.query' name='q' placeholder='Cari berita…' type='search'/>
+        </form>
+      </div>
+    </b:if>
+
+    <b:if cond='data:view.isError'>
+      <div class='not-found'>
+        <h1>Halaman tidak ditemukan</h1>
+        <p class='lead' style='margin-inline:auto'>Halaman yang Anda cari mungkin sudah dipindahkan atau dihapus.</p>
+        <a class='btn btn-primary' expr:href='data:blog.homepageUrl'>Kembali ke beranda</a>
+      </div>
+    </b:if>
+
+    <b:section class='main' id='main' maxwidgets='1' name='Postingan' showaddelement='no'>
+      <b:widget id='Blog1' locked='true' title='Postingan Blog' type='Blog' version='2' visible='true'>
+        <b:includable id='main'>
+          <b:if cond='data:view.isSingleItem'>
+            <b:loop values='data:posts' var='post'>
+              <b:include data='post' name='singlePost'/>
+            </b:loop>
+          <b:else/>
+            <div class='news-grid'><b:loop values='data:posts' var='post'><b:include data='post' name='postCard'/></b:loop></div>
+            <p class='empty no-posts'>Belum ada berita.</p>
+            <b:if cond='not data:view.isHomepage'>
+              <nav aria-label='Halaman berita' class='pager'>
+                <b:if cond='data:newerPageUrl'>
+                  <a class='btn btn-outline newer' expr:href='data:newerPageUrl'>&#8592; Lebih baru</a>
+                </b:if>
+                <b:if cond='data:olderPageUrl'>
+                  <a class='btn btn-outline older' expr:href='data:olderPageUrl'>Lebih lama &#8594;</a>
+                </b:if>
+              </nav>
+            </b:if>
+          </b:if>
+        </b:includable>
+
+        <!-- Kartu berita pada beranda, halaman berita, label, dan pencarian -->
+        <b:includable id='postCard' var='post'>
+          <article class='card news-card'>
+            <a aria-hidden='true' class='news-thumb' expr:href='data:post.url' tabindex='-1'>
+              <b:if cond='data:post.featuredImage'>
+                <img alt='' expr:src='resizeImage(data:post.featuredImage, 800, &quot;16:10&quot;)' loading='lazy'/>
+              <b:else/>
+                <div class='thumb-fallback'>
+                  <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><rect height='16' rx='2' width='18' x='3' y='4'/><path d='M7 8h10M7 12h10M7 16h6'/></svg>
+                </div>
+              </b:if>
+            </a>
+            <div class='news-body'>
+              <div class='meta'>
+                <b:loop index='i' values='data:post.labels' var='label'>
+                  <b:if cond='data:i == 0'>
+                    <a class='tag' expr:href='data:label.url'><data:label.name/></a>
+                  </b:if>
+                </b:loop>
+                <time expr:datetime='data:post.date.iso8601'><data:post.date/></time>
+              </div>
+              <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
+              <p><b:eval expr='snippet(data:post.body, {length: 160, links: false, linebreaks: false})'/></p>
+            </div>
+          </article>
+        </b:includable>
+
+        <!-- Isi berita dan halaman statis -->
+        <b:includable id='singlePost' var='post'>
+          <article expr:class='data:view.isPage ? &quot;article article-page&quot; : &quot;article&quot;'>
+            <b:if cond='data:view.isPost'>
+              <a class='link-back' expr:href='data:blog.homepageUrl + &quot;search&quot;'>
+                <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M19 12H5M11 6l-6 6 6 6'/></svg>
+                Semua berita
+              </a>
+              <div class='meta'>
+                <b:loop values='data:post.labels' var='label'>
+                  <a class='tag' expr:href='data:label.url'><data:label.name/></a>
+                </b:loop>
+                <time expr:datetime='data:post.date.iso8601'><data:post.date/></time>
+              </div>
+            </b:if>
+            <h1><data:post.title/></h1>
+            <div class='prose post-body'><data:post.body/></div>
+          </article>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+</section>
+
+<!-- ==================== BERANDA: SAMBUTAN + AJAKAN ==================== -->
+<b:if cond='data:view.isHomepage'>
+  <section class='block block-alt'>
+    <div class='container'>
+      <b:section class='welcome-section' id='sambutan' maxwidgets='1' name='Sambutan Kepala Sekolah (Beranda)' showaddelement='no'>
+        <b:widget id='Image2' locked='true' title='Sambutan Kepala Sekolah' type='Image' version='1' visible='true'>
+          <b:includable id='main'>
+            <div class='welcome'>
+              <b:if cond='data:sourceUrl'>
+                <img class='welcome-photo' expr:alt='data:title' expr:src='data:sourceUrl' loading='lazy'/>
+              </b:if>
+              <div class='welcome-text'>
+                <p class='eyebrow'><data:title/></p>
+                <blockquote><data:caption/></blockquote>
+                <b:if cond='data:link'>
+                  <a class='link-arrow' expr:href='data:link'>Baca sambutan
+                    <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M5 12h14M13 6l6 6-6 6'/></svg>
+                  </a>
+                </b:if>
+              </div>
+            </div>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </section>
+
+  <section class='block'>
+    <div class='container'>
+      <b:section class='cta-section' id='ajakan' maxwidgets='1' name='Ajakan (Beranda)' showaddelement='no'>
+        <b:widget id='HTML1' locked='true' title='Ada yang ingin kamu ceritakan?' type='HTML' version='1' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='content'><![CDATA[<p>Portal Sekolah Ramah Anak dan layanan Bimbingan Konseling siap menjadi ruang aman untuk bercerita.</p>
+<a class="btn btn-light" href="/p/layanan-bk.html">Layanan BK</a>]]></b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='cta-band'>
+              <div>
+                <h2><data:title/></h2>
+                <div class='cta-content'><data:content/></div>
+              </div>
+            </div>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </section>
+</b:if>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class='site-footer'>
+  <div class='container footer-grid'>
+    <div class='footer-brand'>
+      <div>
+        <strong><data:blog.title/></strong>
+        <p>Media Informasi &amp; Pengumuman Sekolah</p>
+      </div>
+    </div>
+    <b:section class='footer-links' id='footer-links' maxwidgets='1' name='Footer: Tautan' showaddelement='no'>
+      <b:widget id='LinkList4' locked='true' title='Tautan' type='LinkList' version='1' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='sorting'>NONE</b:widget-setting>
+          <b:widget-setting name='text-0'>Profil</b:widget-setting>
+          <b:widget-setting name='link-0'>/p/profil.html</b:widget-setting>
+          <b:widget-setting name='text-1'>Berita</b:widget-setting>
+          <b:widget-setting name='link-1'>/search</b:widget-setting>
+          <b:widget-setting name='text-2'>Literasi Digital</b:widget-setting>
+          <b:widget-setting name='link-2'>/search/label/Literasi</b:widget-setting>
+          <b:widget-setting name='text-3'>Album</b:widget-setting>
+          <b:widget-setting name='link-3'>/p/album.html</b:widget-setting>
+          <b:widget-setting name='text-4'>Layanan BK</b:widget-setting>
+          <b:widget-setting name='link-4'>/p/layanan-bk.html</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <h3><data:title/></h3>
+          <ul class='footer-list'>
+            <b:loop values='data:links' var='link'>
+              <li><a expr:href='data:link.target'><data:link.name/></a></li>
+            </b:loop>
+          </ul>
+        </b:includable>
+      </b:widget>
+    </b:section>
+    <b:section class='footer-contact' id='footer-contact' maxwidgets='1' name='Footer: Kontak' showaddelement='no'>
+      <b:widget id='HTML2' locked='true' title='Kontak' type='HTML' version='1' visible='true'>
+        <b:includable id='main'>
+          <b:if cond='data:content'>
+            <h3><data:title/></h3>
+            <div class='footer-html'><data:content/></div>
+          </b:if>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+  <div class='container footer-bottom'>&#169; <span data-year='true'>2026</span> <data:blog.title/></div>
+</footer>
+
+<dialog aria-label='Pratinjau foto' class='lightbox' id='lightbox'><img alt=''/><p>&#160;</p></dialog>
+
+<script>
+//<![CDATA[
+%%JS%%
+//]]>
+</script>
+</body>
+</html>

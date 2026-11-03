@@ -236,12 +236,12 @@ p { margin: 0 0 1em; }
 /* ---------- Berita ---------- */
 .toolbar { display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 20px; }
 .chips { display: flex; gap: 8px; flex-wrap: wrap; }
-.chip { padding: 7px 16px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--muted); font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer; }
+.chip { padding: 7px 16px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--muted); font-family: var(--font-head); font-size: .9rem; font-weight: 600; cursor: pointer; }
 .chip:hover { border-color: var(--blue-500); color: var(--blue-700); }
 .chip.active { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
 .search { position: relative; flex: 0 1 300px; }
 .search .ic { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); width: 18px; height: 18px; }
-.search input { width: 100%; padding: 11px 16px 11px 42px; border: 1px solid var(--line); border-radius: 999px; font: inherit; font-size: .95rem; background: #fff; color: var(--ink); }
+.search input { width: 100%; padding: 11px 16px 11px 42px; border: 1px solid var(--line); border-radius: 999px; font-family: var(--font-head); font-size: .95rem; background: #fff; color: var(--ink); }
 .search input:focus { outline: none; border-color: var(--blue-500); box-shadow: 0 0 0 4px var(--blue-100); }
 @media (max-width: 600px) { .search { flex-basis: 100%; } }
 

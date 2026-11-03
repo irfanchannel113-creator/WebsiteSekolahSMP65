@@ -1,0 +1,88 @@
+/* ============================================================
+   Tambahan khusus Blogger (digabung setelah assets/css/style.css)
+   ============================================================ */
+
+/* Blogger membungkus setiap widget dengan div.section > div.widget */
+.section { margin: 0; padding: 0; }
+.widget { margin: 0; }
+.header-inner .section { min-width: 0; }
+
+/* Menu: tautan berada di dalam div.widget, bukan anak langsung nav */
+.main-nav .section, .main-nav .widget { display: flex; align-items: center; gap: 4px; }
+.main-nav .nav-links a {
+  padding: 7px 11px; border-radius: 8px; color: var(--muted);
+  font-size: .9rem; font-weight: 600; white-space: nowrap;
+}
+.main-nav .nav-links a:hover { color: var(--blue-900); background: var(--blue-50); }
+.main-nav .nav-links a.active { color: var(--blue-600); background: var(--blue-50); }
+@media (max-width: 1000px) {
+  .main-nav .section, .main-nav .widget, .main-nav .nav-links { flex-direction: column; align-items: stretch; gap: 2px; }
+  .main-nav .nav-links a { padding: 10px 12px; font-size: .95rem; }
+  .main-nav .btn { justify-content: center; margin: 10px 0 0; }
+}
+.nav-links { display: flex; align-items: center; gap: 4px; }
+
+/* Judul blog pada hero */
+.hero h1 { color: var(--blue-900); }
+.hero-logo:empty { display: none; }
+.hero-logo::before { display: none; }
+.hero-logo .widget {
+  position: relative; width: 240px; aspect-ratio: 1; border-radius: 50%;
+  background: #fff; box-shadow: var(--shadow); display: grid; place-items: center;
+}
+.hero-logo .widget img { width: 72%; height: auto; }
+@media (max-width: 760px) { .hero-logo .widget { width: 150px; } }
+
+/* Akses cepat: ikon dipasang lewat CSS sesuai urutan tautan */
+.quick .widget { display: contents; }
+.quick-item strong { font-family: var(--font-head); }
+.quick-ic { font-size: 0; position: relative; }
+.quick-ic::before {
+  content: ""; position: absolute; inset: 0; margin: auto; width: 20px; height: 20px; background: currentColor;
+  -webkit-mask: var(--qi) center / contain no-repeat; mask: var(--qi) center / contain no-repeat;
+}
+.quick-item:nth-child(4n+1) { --qi: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='4' width='7' height='7' rx='1.5'/%3E%3Crect x='13' y='4' width='7' height='7' rx='1.5'/%3E%3Crect x='4' y='13' width='7' height='7' rx='1.5'/%3E%3Crect x='13' y='13' width='7' height='7' rx='1.5'/%3E%3C/svg%3E"); }
+.quick-item:nth-child(4n+2) { --qi: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15z'/%3E%3Cpath d='M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5'/%3E%3C/svg%3E"); }
+.quick-item:nth-child(4n+3) { --qi: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z'/%3E%3C/svg%3E"); }
+.quick-item:nth-child(4n+4) { --qi: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='16' rx='2'/%3E%3Ccircle cx='9' cy='10' r='2'/%3E%3Cpath d='M21 16l-5-5-9 9'/%3E%3C/svg%3E"); }
+
+/* Sambutan & CTA dari widget */
+.welcome-text blockquote { white-space: pre-line; }
+.cta-content p { color: #c3d4f5; margin: 0 0 14px; max-width: 60ch; }
+.cta-content .btn { margin-top: 2px; }
+
+/* Daftar berita */
+.news-grid:empty { display: none; }
+.news-grid:empty + .no-posts { display: block; }
+.no-posts { display: none; }
+.pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.pager .older { margin-left: auto; }
+.toolbar .widget { display: contents; }
+.chips a.chip { display: inline-block; }
+
+/* Artikel & halaman statis */
+.view-single .main-section { padding-top: 0; }
+.article-page { max-width: 1120px; }
+.article-page > h1 { margin-top: 24px; }
+.post-body { overflow-wrap: break-word; }
+.post-body img { height: auto; border-radius: 10px; }
+.post-body .separator a, .post-body a[imageanchor] { margin: 0 !important; display: inline-block; }
+.post-body h2, .post-body h3, .post-body h4 { margin: 1.4em 0 .5em; color: var(--blue-900); }
+.post-body ul, .post-body ol { padding-left: 1.3em; margin: 0 0 1em; }
+.post-body li { margin-bottom: .35em; }
+.post-body blockquote { margin: 1.2em 0; padding: 12px 18px; border-left: 4px solid var(--blue-500); background: var(--blue-50); border-radius: 0 10px 10px 0; }
+.post-body table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: .95rem; }
+.post-body th, .post-body td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; }
+.post-body th { background: var(--blue-50); font-family: var(--font-head); }
+.post-body iframe { max-width: 100%; }
+.post-body .block { padding: 0 0 32px; }
+.post-body .block-head { margin-bottom: 14px; }
+.post-body .card h3 { margin-top: 0; }
+
+/* Footer dari widget */
+.site-footer .widget h3 { margin-top: 0; }
+.footer-html p { margin: 0 0 6px; }
+.footer-grid > .section:empty { display: none; }
+
+/* Halaman 404 */
+.not-found { text-align: center; padding: 64px 16px; }
