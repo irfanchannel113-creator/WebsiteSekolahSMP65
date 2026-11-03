@@ -6,8 +6,13 @@ File tema: **`blogger/tema-smpn65batam.xml`**
 > tetapi Blogger bisa saja menolak bagian tertentu. Karena itu **langkah 1 wajib dilakukan**.
 
 ## Yang tetap / yang berubah
-**Tidak berubah:** semua postingan, halaman (mis. `/p/aplikasi-simantap-smpn-65-batam.html`), label, komentar yang
-sudah ada, alamat situs, dan judul/deskripsi blog. Tema hanya mengganti tampilan.
+**Tidak berubah:** semua postingan, halaman (Visi Misi, Daftar Guru, Struktur Organisasi, Sejarah, Data Statistik,
+Kurikulum, Alamat dan Kontak, halaman SIMANTAP, dll.), label, alamat situs, dan judul/deskripsi blog.
+Tema hanya mengganti tampilan.
+
+**Halaman lama tidak perlu disusun ulang.** Setelah tema dipasang, semua halaman otomatis memakai desain baru:
+menu, footer, pita judul biru muda, font, tabel, dan gambar. Font yang dulu dipilih lewat editor Blogger
+(mis. Arial/Georgia) otomatis diseragamkan; warna dan ukuran teks yang diatur manual tetap seperti aslinya.
 
 **Berubah:** widget di samping dan footer lama. Tema baru memakai widget dengan ID sendiri (`…901`, `…902`, dst.)
 supaya isi widget lama tidak tertukar ke tempat yang salah. Akibatnya isi widget lama **tidak terbawa otomatis**,
@@ -36,7 +41,7 @@ Tautan berikut **sudah terisi** di tema:
 | Menu | Tujuan |
 |---|---|
 | Beranda | `/` |
-| Profil | `/p/profil.html` ← **sesuaikan dengan alamat halaman profil yang sudah ada** |
+| Profil ▾ (dropdown) | Visi Misi · Daftar Guru dan Tenaga Kependidikan · Struktur Organisasi · Sejarah · Data Statistik · Kurikulum · Alamat dan Kontak (semua halaman `/p/…` yang sudah ada) |
 | Literasi Digital | https://fliphtml5.com/bookcase/gqoiv |
 | Album | https://sites.google.com/view/galeri65batam/hasil-karya |
 | Aplikasi SIMANTAP | https://play.google.com/store/apps/details?id=com.ict.simantap_smpn_65_batam |
@@ -45,9 +50,9 @@ Tautan berikut **sudah terisi** di tema:
 
 Tautan ke situs lain otomatis dibuka di tab baru.
 
-**Sub-menu (dropdown) Profil:** di widget **Menu**, tambahkan item tepat di bawah "Profil" dengan nama diawali
-garis bawah, misalnya `_Visi dan Misi` → `/p/visi-misi.html`. Garis bawahnya tidak tampil; item itu muncul sebagai
-dropdown di bawah Profil.
+**Cara kerja dropdown:** di widget **Menu**, "Profil" bertautan `#`, dan item di bawahnya diberi nama berawalan
+garis bawah (mis. `_Visi Misi`). Garis bawahnya tidak tampil; item-item itu muncul sebagai dropdown di bawah Profil.
+Untuk menambah sub-menu baru, buat item berawalan `_` lalu geser posisinya ke bawah "Profil".
 
 Yang masih perlu diisi:
 
@@ -76,12 +81,7 @@ Contoh isi widget **Kontak**:
 - **Setelan → Postingan → Maksimum postingan di halaman utama**: `6` (kartu berita tersusun 3 kolom).
 - **Setelan → Bahasa dan format**: Bahasa Indonesia; format tanggal seperti `6 Oktober 2026`.
 
-## 5. Halaman Profil (opsional)
-Jika ingin halaman profil bergaya baru, buka halaman profil yang ada, pindah ke tampilan **HTML** (ikon `< >`),
-lalu tempel isi `blogger/halaman/profil.html` dan ganti teks di dalam [kurung siku].
-Halaman lain yang sudah ada tetap bisa dipakai apa adanya.
-
-## 6. Menulis berita
+## 5. Menulis berita
 - Gambar pertama di dalam postingan otomatis menjadi gambar kartu berita.
 - Label postingan tampil sebagai kategori di halaman berita.
 - Tema ini **tidak menampilkan kolom komentar**.

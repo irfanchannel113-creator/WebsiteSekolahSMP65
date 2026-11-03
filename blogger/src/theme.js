@@ -53,6 +53,7 @@
   var here = clean(location.pathname);
   var links = [].slice.call(document.querySelectorAll(".nav-links a"));
   var match = null;
+  links = links.filter(function (a) { return a.getAttribute("href").charAt(0) !== "#"; });
   links.forEach(function (a) {
     var u = new URL(a.getAttribute("href"), location.href);
     if (u.host === location.host && clean(u.pathname) === here) match = a;
@@ -79,7 +80,20 @@
   });
 
   // Tombol eksternal yang belum diisi (#) tampil nonaktif
-  [].slice.call(document.querySelectorAll('a[href="#"]')).forEach(function (a) {
+  // Induk dropdown bertautan "#": klik/ketuk membuka sub-menu
+  [].slice.call(document.querySelectorAll(".has-sub > a")).forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (a.getAttribute("href") === "#") { e.preventDefault(); a.parentNode.classList.toggle("open"); }
+    });
+  });
+  document.addEventListener("click", function (e) {
+    [].slice.call(document.querySelectorAll(".has-sub.open")).forEach(function (el) {
+      if (!el.contains(e.target)) el.classList.remove("open");
+    });
+  });
+  [].slice.call(document.querySelectorAll('a[href="#"]')).filter(function (a) {
+    return !a.parentNode.classList.contains("has-sub");
+  }).forEach(function (a) {
     a.classList.add("is-disabled");
     a.setAttribute("aria-disabled", "true");
     a.setAttribute("title", "Tautan belum diatur");

@@ -108,13 +108,25 @@ p { margin: 0 0 1em; }
 @media (min-width: 1101px) and (max-width: 1300px) { .brand small { display: none; } }
 
 .main-nav { display: flex; align-items: center; gap: 4px; }
-.main-nav .nav-links a {
+.main-nav a:not(.btn) {
   padding: 7px 9px; border-radius: 8px; color: var(--muted);
   font-size: .88rem; font-weight: 600; white-space: nowrap;
 }
-.main-nav .nav-links a:hover { color: var(--blue-900); background: var(--blue-50); }
-.main-nav .nav-links a.active { color: var(--blue-600); background: var(--blue-50); }
+.main-nav a:not(.btn):hover { color: var(--blue-900); background: var(--blue-50); }
+.main-nav a.active { color: var(--blue-600); background: var(--blue-50); }
 .nav-cta { margin-left: 8px; }
+/* Dropdown sub-menu (mis. Profil) */
+.nav-item { position: relative; }
+.has-sub > a::after {
+  content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 0 3px 7px;
+  border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: rotate(45deg);
+}
+.submenu {
+  display: none; position: absolute; top: 100%; left: 0; z-index: 60; min-width: 260px;
+  padding: 6px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
+}
+.main-nav .submenu a { display: block; white-space: normal; padding: 8px 12px; }
+.has-sub:hover > .submenu, .has-sub:focus-within > .submenu, .has-sub.open > .submenu { display: block; }
 .nav-toggle {
   display: none; width: 42px; height: 42px; border-radius: 10px;
   border: 1px solid var(--line); background: #fff; color: var(--blue-900);
@@ -130,7 +142,10 @@ p { margin: 0 0 1em; }
     border-bottom: 1px solid var(--line); box-shadow: var(--shadow);
   }
   .main-nav.open { display: flex; }
-  .main-nav .nav-links a { display: block; padding: 10px 12px; font-size: .95rem; }
+  .submenu { display: block; position: static; min-width: 0; padding: 0 0 4px 14px; border: 0; box-shadow: none; }
+  .main-nav .submenu a { padding: 8px 12px; font-size: .9rem; }
+  .has-sub > a::after { display: none; }
+  .main-nav a:not(.btn) { display: block; padding: 10px 12px; font-size: .95rem; }
   .nav-cta { margin: 10px 0 0; justify-content: center; }
 }
 
@@ -346,28 +361,13 @@ p { margin: 0 0 1em; }
   .main-nav .btn { justify-content: center; margin: 10px 0 0; }
 }
 .nav-links { display: flex; align-items: center; gap: 4px; }
+.main-nav .nav-links .submenu a { display: block; white-space: normal; padding: 8px 12px; }
+@media (max-width: 1100px) { .main-nav .nav-links .submenu a { font-size: .9rem; } }
 .nav-item { position: relative; }
 .brand-wrap.section { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .brand-logo, .brand-logo img { flex: none; }
 .brand-logo img { width: 40px; height: auto; }
 .brand-wrap .widget { min-width: 0; }
-/* Dropdown sub-menu */
-.has-sub > a::after {
-  content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 0 3px 7px;
-  border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: rotate(45deg);
-}
-.submenu {
-  display: none; position: absolute; top: 100%; left: 0; z-index: 60; min-width: 230px;
-  padding: 6px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
-}
-.main-nav .submenu a { display: block; white-space: normal; padding: 8px 12px; }
-.has-sub:hover > .submenu, .has-sub:focus-within > .submenu { display: block; }
-@media (max-width: 1100px) {
-  .submenu { display: block; position: static; min-width: 0; padding: 0 0 4px 14px; border: 0; box-shadow: none; }
-  .main-nav .submenu a { padding: 8px 12px; font-size: .9rem; }
-  .has-sub > a::after { display: none; }
-}
-
 /* Judul blog pada hero */
 .hero h1 { color: var(--blue-900); }
 .hero-logo:empty { display: none; }
@@ -408,8 +408,16 @@ p { margin: 0 0 1em; }
 
 /* Artikel & halaman statis */
 .view-single .main-section { padding-top: 0; }
-.article-page { max-width: 1120px; }
-.article-page > h1 { margin-top: 24px; }
+.article-page { max-width: 1120px; padding: 32px 0 52px; }
+/* Seragamkan font yang terbawa dari editor Blogger (isi halaman/postingan lama) */
+.post-body [style*="font-family"], .post-body font[face] { font-family: inherit !important; }
+.post-body h1, .post-body h2, .post-body h3, .post-body h4,
+.post-body h1 *, .post-body h2 *, .post-body h3 *, .post-body h4 * { font-family: var(--font-head) !important; }
+.post-body table td, .post-body table th, .post-body table * { font-family: var(--font-head); }
+/* Tabel lebar (mis. daftar guru) bisa digeser di layar kecil */
+@media (max-width: 760px) {
+  .post-body table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+}
 .post-body { overflow-wrap: break-word; }
 .post-body img { height: auto; border-radius: 10px; }
 .post-body .separator a, .post-body a[imageanchor] { margin: 0 !important; display: inline-block; }
@@ -487,15 +495,29 @@ p { margin: 0 0 1em; }
             <b:widget-setting name='text-0'>Beranda</b:widget-setting>
             <b:widget-setting name='link-0'>/</b:widget-setting>
             <b:widget-setting name='text-1'>Profil</b:widget-setting>
-            <b:widget-setting name='link-1'>/p/profil.html</b:widget-setting>
-            <b:widget-setting name='text-2'>Literasi Digital</b:widget-setting>
-            <b:widget-setting name='link-2'>https://fliphtml5.com/bookcase/gqoiv</b:widget-setting>
-            <b:widget-setting name='text-3'>Album</b:widget-setting>
-            <b:widget-setting name='link-3'>https://sites.google.com/view/galeri65batam/hasil-karya</b:widget-setting>
-            <b:widget-setting name='text-4'>Aplikasi SIMANTAP</b:widget-setting>
-            <b:widget-setting name='link-4'>https://play.google.com/store/apps/details?id=com.ict.simantap_smpn_65_batam</b:widget-setting>
-            <b:widget-setting name='text-5'>Bimbingan Konseling</b:widget-setting>
-            <b:widget-setting name='link-5'>https://www.sra65batam.my.id/</b:widget-setting>
+            <b:widget-setting name='link-1'>#</b:widget-setting>
+            <b:widget-setting name='text-2'>_Visi Misi</b:widget-setting>
+            <b:widget-setting name='link-2'>/p/visi-misi-sekolah.html</b:widget-setting>
+            <b:widget-setting name='text-3'>_Daftar Guru dan Tenaga Kependidikan</b:widget-setting>
+            <b:widget-setting name='link-3'>/p/daftar-guru-dan-tenaga-kependidikan.html</b:widget-setting>
+            <b:widget-setting name='text-4'>_Struktur Organisasi</b:widget-setting>
+            <b:widget-setting name='link-4'>/p/struktur-organisasi.html</b:widget-setting>
+            <b:widget-setting name='text-5'>_Sejarah</b:widget-setting>
+            <b:widget-setting name='link-5'>/p/sejarah-smpn-65-batam.html</b:widget-setting>
+            <b:widget-setting name='text-6'>_Data Statistik</b:widget-setting>
+            <b:widget-setting name='link-6'>/p/statistik.html</b:widget-setting>
+            <b:widget-setting name='text-7'>_Kurikulum</b:widget-setting>
+            <b:widget-setting name='link-7'>/p/kurikulum-merdeka.html</b:widget-setting>
+            <b:widget-setting name='text-8'>_Alamat dan Kontak</b:widget-setting>
+            <b:widget-setting name='link-8'>/p/alamat-dan-kontak.html</b:widget-setting>
+            <b:widget-setting name='text-9'>Literasi Digital</b:widget-setting>
+            <b:widget-setting name='link-9'>https://fliphtml5.com/bookcase/gqoiv</b:widget-setting>
+            <b:widget-setting name='text-10'>Album</b:widget-setting>
+            <b:widget-setting name='link-10'>https://sites.google.com/view/galeri65batam/hasil-karya</b:widget-setting>
+            <b:widget-setting name='text-11'>Aplikasi SIMANTAP</b:widget-setting>
+            <b:widget-setting name='link-11'>https://play.google.com/store/apps/details?id=com.ict.simantap_smpn_65_batam</b:widget-setting>
+            <b:widget-setting name='text-12'>Bimbingan Konseling</b:widget-setting>
+            <b:widget-setting name='link-12'>https://www.sra65batam.my.id/</b:widget-setting>
           </b:widget-settings>
           <b:includable id='main'>
             <div class='nav-links'>
@@ -537,7 +559,7 @@ p { margin: 0 0 1em; }
         <p class='lead'>Media informasi dan pengumuman sekolah untuk siswa, orang tua, dan masyarakat.</p>
         <div class='hero-actions'>
           <a class='btn btn-primary' expr:href='data:blog.homepageUrl + &quot;search&quot;'>Berita &amp; Pengumuman</a>
-          <a class='btn btn-outline' expr:href='data:blog.homepageUrl + &quot;p/profil.html&quot;'>Profil Sekolah</a>
+          <a class='btn btn-outline' expr:href='data:blog.homepageUrl + &quot;p/visi-misi-sekolah.html&quot;'>Profil Sekolah</a>
         </div>
       </div>
       <b:section class='hero-logo' id='hero-logo' maxwidgets='1' name='Logo Besar (Beranda)' showaddelement='no'>
@@ -599,6 +621,16 @@ p { margin: 0 0 1em; }
         <h1>Berita &amp; Pengumuman</h1>
         <p class='lead'>Kabar terbaru, pengumuman, dan kegiatan sekolah.</p>
       </b:if>
+    </div>
+  </section>
+</b:if>
+
+<!-- ==================== JUDUL HALAMAN STATIS ==================== -->
+<b:if cond='data:view.isPage'>
+  <section class='page-head'>
+    <div class='container'>
+      <p class='eyebrow'><data:blog.title/></p>
+      <h1><data:view.title/></h1>
     </div>
   </section>
 </b:if>
@@ -710,7 +742,9 @@ p { margin: 0 0 1em; }
                 <time expr:datetime='data:post.date.iso8601'><data:post.date/></time>
               </div>
             </b:if>
-            <h1><data:post.title/></h1>
+            <b:if cond='not data:view.isPage'>
+              <h1><data:post.title/></h1>
+            </b:if>
             <div class='prose post-body'><data:post.body/></div>
           </article>
         </b:includable>
@@ -797,8 +831,8 @@ p { margin: 0 0 1em; }
       <b:widget id='LinkList904' locked='true' title='Tautan' type='LinkList' version='1' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='sorting'>NONE</b:widget-setting>
-          <b:widget-setting name='text-0'>Profil</b:widget-setting>
-          <b:widget-setting name='link-0'>/p/profil.html</b:widget-setting>
+          <b:widget-setting name='text-0'>Visi Misi</b:widget-setting>
+          <b:widget-setting name='link-0'>/p/visi-misi-sekolah.html</b:widget-setting>
           <b:widget-setting name='text-1'>Berita &amp; Pengumuman</b:widget-setting>
           <b:widget-setting name='link-1'>/search</b:widget-setting>
           <b:widget-setting name='text-2'>Literasi Digital</b:widget-setting>
@@ -809,6 +843,8 @@ p { margin: 0 0 1em; }
           <b:widget-setting name='link-4'>https://play.google.com/store/apps/details?id=com.ict.simantap_smpn_65_batam</b:widget-setting>
           <b:widget-setting name='text-5'>Bimbingan Konseling</b:widget-setting>
           <b:widget-setting name='link-5'>https://www.sra65batam.my.id/</b:widget-setting>
+          <b:widget-setting name='text-6'>Alamat dan Kontak</b:widget-setting>
+          <b:widget-setting name='link-6'>/p/alamat-dan-kontak.html</b:widget-setting>
         </b:widget-settings>
         <b:includable id='main'>
           <h3><data:title/></h3>
@@ -921,6 +957,7 @@ p { margin: 0 0 1em; }
   var here = clean(location.pathname);
   var links = [].slice.call(document.querySelectorAll(".nav-links a"));
   var match = null;
+  links = links.filter(function (a) { return a.getAttribute("href").charAt(0) !== "#"; });
   links.forEach(function (a) {
     var u = new URL(a.getAttribute("href"), location.href);
     if (u.host === location.host && clean(u.pathname) === here) match = a;
@@ -947,7 +984,20 @@ p { margin: 0 0 1em; }
   });
 
   // Tombol eksternal yang belum diisi (#) tampil nonaktif
-  [].slice.call(document.querySelectorAll('a[href="#"]')).forEach(function (a) {
+  // Induk dropdown bertautan "#": klik/ketuk membuka sub-menu
+  [].slice.call(document.querySelectorAll(".has-sub > a")).forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (a.getAttribute("href") === "#") { e.preventDefault(); a.parentNode.classList.toggle("open"); }
+    });
+  });
+  document.addEventListener("click", function (e) {
+    [].slice.call(document.querySelectorAll(".has-sub.open")).forEach(function (el) {
+      if (!el.contains(e.target)) el.classList.remove("open");
+    });
+  });
+  [].slice.call(document.querySelectorAll('a[href="#"]')).filter(function (a) {
+    return !a.parentNode.classList.contains("has-sub");
+  }).forEach(function (a) {
     a.classList.add("is-disabled");
     a.setAttribute("aria-disabled", "true");
     a.setAttribute("title", "Tautan belum diatur");

@@ -59,7 +59,8 @@
   var T = S.tautan;
   var NAV = [
     { id: "beranda", label: "Beranda", href: "index.html" },
-    { id: "profil", label: "Profil", href: "profil.html" },
+    { id: "profil", label: "Profil", href: "profil.html",
+      children: (S.menuProfil || []).map(function (p) { return { label: p.nama, href: p.url }; }) },
     { id: "literasi", label: "Literasi Digital", href: T.literasi },
     { id: "album", label: "Album", href: T.album },
     { id: "aplikasi", label: "Aplikasi SIMANTAP", href: T.aplikasi },
@@ -78,7 +79,10 @@
 
   function renderHeader() {
     var links = NAV.map(function (n) {
-      return navLink(n, aktif(n.id) ? ' class="active" aria-current="page"' : "");
+      var a = navLink(n, aktif(n.id) ? ' class="active" aria-current="page"' : "");
+      if (!n.children || !n.children.length) return a;
+      return '<div class="nav-item has-sub">' + a + '<div class="submenu">' +
+        n.children.map(function (c) { return navLink(c); }).join("") + "</div></div>";
     }).join("");
 
     $("#site-header").innerHTML =

@@ -11,8 +11,6 @@ ROOT = SRC.parent.parent
 css = (ROOT / "assets/css/style.css").read_text() + "\n" + (SRC / "blogger.css").read_text()
 js = (SRC / "theme.js").read_text()
 
-# Gaya situs statis yang tidak dipakai di Blogger: menu sebagai anak langsung <nav>
-css = css.replace(".main-nav > a:not(.btn)", ".main-nav .nav-links a").replace(".main-nav > a.active", ".main-nav .nav-links a.active")
 css = re.sub(r"/\* ={10,}\n   SMPN 65 Batam.*?\*/\n", "", css, flags=re.S)
 # Blogger otomatis memberi kelas "section" pada setiap <b:section>, jadi kelas
 # desain .section / .section-alt / .section-head diganti menjadi .block / .block-alt / .block-head.

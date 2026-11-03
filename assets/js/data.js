@@ -54,6 +54,17 @@ window.SITE = {
     sumber: "Imam Syafi'i"
   },
 
+  // Sub-menu Profil (halaman yang sudah ada di situs sekolah)
+  menuProfil: [
+    { nama: "Visi Misi", url: "https://www.smpn65batam.sch.id/p/visi-misi-sekolah.html" },
+    { nama: "Daftar Guru dan Tenaga Kependidikan", url: "https://www.smpn65batam.sch.id/p/daftar-guru-dan-tenaga-kependidikan.html" },
+    { nama: "Struktur Organisasi", url: "https://www.smpn65batam.sch.id/p/struktur-organisasi.html" },
+    { nama: "Sejarah", url: "https://www.smpn65batam.sch.id/p/sejarah-smpn-65-batam.html" },
+    { nama: "Data Statistik", url: "https://www.smpn65batam.sch.id/p/statistik.html" },
+    { nama: "Kurikulum", url: "https://www.smpn65batam.sch.id/p/kurikulum-merdeka.html" },
+    { nama: "Alamat dan Kontak", url: "https://www.smpn65batam.sch.id/p/alamat-dan-kontak.html" }
+  ],
+
   // Tautan aplikasi/layanan eksternal. Isi URL lengkap.
   tautan: {
     simantap: "https://www.smpn65batam.sch.id/p/aplikasi-simantap-smpn-65-batam.html", // tombol SIMANTAP 65
