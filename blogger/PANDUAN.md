@@ -55,7 +55,7 @@ Yang masih perlu diisi:
 | Bagian | Widget | Yang diisi |
 |---|---|---|
 | Logo & Nama Sekolah | **Logo Kecil (Menu)** | Unggah logo (latar transparan). |
-| Logo & Nama Sekolah | Header | Judul = nama sekolah, deskripsi = slogan. Gambar header lama (spanduk) **tidak ditampilkan** di tema ini. |
+| Logo & Nama Sekolah | Header | Tulisan di samping logo selalu **"SMPN 65 Batam"** (tertulis di tema). Judul blog di widget ini hanya dipakai untuk judul besar di beranda dan judul tab browser. Gambar header lama (spanduk) **tidak ditampilkan**. |
 | Logo Besar (Beranda) | Gambar | Unggah logo lagi (±400 px). |
 | Sambutan Kepala Sekolah | Gambar | Foto; **Keterangan** = kalimat sambutan; **Tautan** = alamat halaman sambutan/profil. |
 | Footer: Lokasi & Kontak | HTML "Lokasi" | Sudah berisi peta pencarian "SMP Negeri 65 Batam". Untuk titik yang tepat, ganti dengan kode peta lama atau dari Google Maps → **Bagikan** → **Sematkan peta**. |

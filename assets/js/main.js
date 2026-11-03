@@ -90,7 +90,7 @@
       '<div class="container header-inner">' +
         '<a class="brand" href="index.html">' +
           '<img src="' + esc(S.sekolah.logo) + '" alt="Logo ' + esc(S.sekolah.nama) + '" width="40" height="39">' +
-          '<span><strong>' + esc(S.sekolah.namaPendek) + '</strong><small>' + esc(S.sekolah.slogan) + "</small></span>" +
+          '<span><strong>' + esc(S.sekolah.namaPendek) + "</strong></span>" +
         "</a>" +
         '<button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="main-nav">' + icon("menu") + "</button>" +
         '<nav id="main-nav" class="main-nav" aria-label="Menu utama">' + links +

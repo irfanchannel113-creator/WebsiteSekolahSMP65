@@ -38,7 +38,7 @@
       <b:widget id='Header1' locked='true' title='SMP Negeri 65 Batam (Header)' type='Header' version='1' visible='true'>
         <b:includable id='main'>
           <a class='brand' expr:href='data:blog.homepageUrl'>
-            <span><strong><data:title/></strong><small><data:description/></small></span>
+            <span><strong>SMPN 65 Batam</strong></span>
           </a>
         </b:includable>
       </b:widget>

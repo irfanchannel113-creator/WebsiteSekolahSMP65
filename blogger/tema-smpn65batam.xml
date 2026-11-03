@@ -103,9 +103,7 @@ p { margin: 0 0 1em; }
 .brand:hover { color: var(--ink); }
 .brand img { width: 40px; height: auto; flex: none; }
 .brand span { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
-.brand strong { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--blue-900); }
-.brand small { font-size: .74rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-@media (min-width: 1101px) and (max-width: 1300px) { .brand small { display: none; } }
+.brand strong { font-family: var(--font-head); font-size: 1.08rem; font-weight: 700; color: var(--blue-900); }
 
 .main-nav { display: flex; align-items: center; gap: 4px; }
 .main-nav a:not(.btn) {
@@ -543,7 +541,7 @@ p { margin: 0 0 1em; }
       <b:widget id='Header1' locked='true' title='SMP Negeri 65 Batam (Header)' type='Header' version='1' visible='true'>
         <b:includable id='main'>
           <a class='brand' expr:href='data:blog.homepageUrl'>
-            <span><strong><data:title/></strong><small><data:description/></small></span>
+            <span><strong>SMPN 65 Batam</strong></span>
           </a>
         </b:includable>
       </b:widget>
