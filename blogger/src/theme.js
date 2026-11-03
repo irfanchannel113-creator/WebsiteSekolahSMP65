@@ -10,6 +10,41 @@
     });
   }
 
+  // Sub-menu: item menu yang namanya diawali "_" (mis. "_Visi Misi") masuk ke
+  // dropdown item di atasnya. Diatur lewat Tata Letak → widget Menu.
+  var navLinks = document.querySelector(".nav-links");
+  if (navLinks) {
+    var parent = null;
+    [].slice.call(navLinks.children).forEach(function (a) {
+      if (a.tagName !== "A") return;
+      var text = a.textContent.trim();
+      if (text.charAt(0) === "_" && parent) {
+        a.textContent = text.replace(/^_+\s*/, "");
+        if (!parent.sub) {
+          parent.sub = document.createElement("div");
+          parent.sub.className = "submenu";
+          parent.item.classList.add("has-sub");
+          parent.item.appendChild(parent.sub);
+        }
+        parent.sub.appendChild(a);
+      } else {
+        var item = document.createElement("div");
+        item.className = "nav-item";
+        navLinks.insertBefore(item, a);
+        item.appendChild(a);
+        parent = { item: item, sub: null };
+      }
+    });
+  }
+
+  // Tautan ke situs lain dibuka di tab baru
+  [].slice.call(document.querySelectorAll("a[href]")).forEach(function (a) {
+    if (/^https?:$/.test(a.protocol) && a.host !== location.host) {
+      a.target = "_blank";
+      a.rel = "noopener";
+    }
+  });
+
   // Penanda menu aktif
   function clean(path) {
     try { path = decodeURIComponent(path); } catch (e) {}
@@ -22,13 +57,19 @@
     var u = new URL(a.getAttribute("href"), location.href);
     if (u.host === location.host && clean(u.pathname) === here) match = a;
   });
+  // Berita (postingan, pencarian, label) termasuk menu Beranda
   if (!match && (/^\/\d{4}\/\d{2}\//.test(here) || here.indexOf("/search") === 0)) {
     links.forEach(function (a) {
       var u = new URL(a.getAttribute("href"), location.href);
-      if (u.host === location.host && clean(u.pathname) === "/search") match = a;
+      if (!match && u.host === location.host && clean(u.pathname) === "/") match = a;
     });
   }
-  if (match) { match.classList.add("active"); match.setAttribute("aria-current", "page"); }
+  if (match) {
+    match.classList.add("active");
+    match.setAttribute("aria-current", "page");
+    var top = match.closest(".nav-item");
+    if (top && top.firstElementChild !== match) top.firstElementChild.classList.add("active");
+  }
 
   // Penanda kategori aktif
   var q = new URLSearchParams(location.search).get("q");

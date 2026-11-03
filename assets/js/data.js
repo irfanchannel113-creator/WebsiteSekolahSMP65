@@ -56,8 +56,11 @@ window.SITE = {
 
   // Tautan aplikasi/layanan eksternal. Isi URL lengkap.
   tautan: {
-    simantap: "",          // Aplikasi SIMANTAP 65
-    portalRamahAnak: ""    // Formulir/portal Sekolah Ramah Anak (jika ada)
+    simantap: "https://www.smpn65batam.sch.id/p/aplikasi-simantap-smpn-65-batam.html", // tombol SIMANTAP 65
+    aplikasi: "https://play.google.com/store/apps/details?id=com.ict.simantap_smpn_65_batam", // Aplikasi SIMANTAP (Play Store)
+    literasi: "https://fliphtml5.com/bookcase/gqoiv",                       // Literasi Digital
+    album: "https://sites.google.com/view/galeri65batam/hasil-karya",       // Album
+    bk: "https://www.sra65batam.my.id/"                                     // Bimbingan Konseling / Sekolah Ramah Anak
   },
 
   kepalaSekolah: {
@@ -93,10 +96,5 @@ window.SITE = {
       ringkasan: "",
       isi: []
     }
-  ],
-
-  // Album foto. "keterangan" opsional.
-  galeri: [
-    { src: "assets/img/berita/portal-ramah-anak.jpg", keterangan: "Portal Sekolah Ramah Anak" }
   ]
 };

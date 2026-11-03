@@ -77,7 +77,7 @@ p { margin: 0 0 1em; }
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 18px; border-radius: 999px;
   font-weight: 600; font-size: .92rem; border: 1px solid transparent;
-  transition: background .15s, color .15s, border-color .15s; cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s; cursor: pointer; white-space: nowrap;
 }
 .btn .ic { width: 18px; height: 18px; }
 .btn-sm { padding: 7px 14px; font-size: .85rem; }
@@ -101,15 +101,16 @@ p { margin: 0 0 1em; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
 .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); min-width: 0; }
 .brand:hover { color: var(--ink); }
-.brand img { width: 40px; height: auto; }
+.brand img { width: 40px; height: auto; flex: none; }
 .brand span { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
 .brand strong { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--blue-900); }
 .brand small { font-size: .74rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (min-width: 1101px) and (max-width: 1300px) { .brand small { display: none; } }
 
 .main-nav { display: flex; align-items: center; gap: 4px; }
 .main-nav .nav-links a {
-  padding: 7px 11px; border-radius: 8px; color: var(--muted);
-  font-size: .9rem; font-weight: 600; white-space: nowrap;
+  padding: 7px 9px; border-radius: 8px; color: var(--muted);
+  font-size: .88rem; font-weight: 600; white-space: nowrap;
 }
 .main-nav .nav-links a:hover { color: var(--blue-900); background: var(--blue-50); }
 .main-nav .nav-links a.active { color: var(--blue-600); background: var(--blue-50); }
@@ -120,7 +121,7 @@ p { margin: 0 0 1em; }
   align-items: center; justify-content: center; cursor: pointer;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .nav-toggle { display: inline-flex; }
   .main-nav {
     display: none; position: absolute; top: 60px; left: 0; right: 0;
@@ -129,7 +130,7 @@ p { margin: 0 0 1em; }
     border-bottom: 1px solid var(--line); box-shadow: var(--shadow);
   }
   .main-nav.open { display: flex; }
-  .main-nav .nav-links a { padding: 10px 12px; font-size: .95rem; }
+  .main-nav .nav-links a { display: block; padding: 10px 12px; font-size: .95rem; }
   .nav-cta { margin: 10px 0 0; justify-content: center; }
 }
 
@@ -334,17 +335,38 @@ p { margin: 0 0 1em; }
 /* Menu: tautan berada di dalam div.widget, bukan anak langsung nav */
 .main-nav .section, .main-nav .widget { display: flex; align-items: center; gap: 4px; }
 .main-nav .nav-links a {
-  padding: 7px 11px; border-radius: 8px; color: var(--muted);
-  font-size: .9rem; font-weight: 600; white-space: nowrap;
+  display: inline-block; padding: 7px 9px; border-radius: 8px; color: var(--muted);
+  font-size: .88rem; font-weight: 600; white-space: nowrap;
 }
 .main-nav .nav-links a:hover { color: var(--blue-900); background: var(--blue-50); }
 .main-nav .nav-links a.active { color: var(--blue-600); background: var(--blue-50); }
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .main-nav .section, .main-nav .widget, .main-nav .nav-links { flex-direction: column; align-items: stretch; gap: 2px; }
-  .main-nav .nav-links a { padding: 10px 12px; font-size: .95rem; }
+  .main-nav .nav-links a { display: block; padding: 10px 12px; font-size: .95rem; }
   .main-nav .btn { justify-content: center; margin: 10px 0 0; }
 }
 .nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-item { position: relative; }
+.brand-wrap.section { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand-logo, .brand-logo img { flex: none; }
+.brand-logo img { width: 40px; height: auto; }
+.brand-wrap .widget { min-width: 0; }
+/* Dropdown sub-menu */
+.has-sub > a::after {
+  content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 0 3px 7px;
+  border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: rotate(45deg);
+}
+.submenu {
+  display: none; position: absolute; top: 100%; left: 0; z-index: 60; min-width: 230px;
+  padding: 6px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
+}
+.main-nav .submenu a { display: block; white-space: normal; padding: 8px 12px; }
+.has-sub:hover > .submenu, .has-sub:focus-within > .submenu { display: block; }
+@media (max-width: 1100px) {
+  .submenu { display: block; position: static; min-width: 0; padding: 0 0 4px 14px; border: 0; box-shadow: none; }
+  .main-nav .submenu a { padding: 8px 12px; font-size: .9rem; }
+  .has-sub > a::after { display: none; }
+}
 
 /* Judul blog pada hero */
 .hero h1 { color: var(--blue-900); }
@@ -436,13 +458,17 @@ p { margin: 0 0 1em; }
 <!-- ==================== HEADER ==================== -->
 <header class='site-header'>
   <div class='container header-inner'>
-    <b:section class='brand-wrap' id='brand' maxwidgets='1' name='Logo &amp; Nama Sekolah' showaddelement='no'>
+    <b:section class='brand-wrap' id='brand' maxwidgets='2' name='Logo &amp; Nama Sekolah' showaddelement='no'>
+      <b:widget id='Image903' locked='true' title='Logo Kecil (Menu)' type='Image' version='1' visible='true'>
+        <b:includable id='main'>
+          <b:if cond='data:sourceUrl'>
+            <a class='brand-logo' expr:href='data:blog.homepageUrl'><img expr:alt='data:title' expr:src='data:sourceUrl' height='40' width='40'/></a>
+          </b:if>
+        </b:includable>
+      </b:widget>
       <b:widget id='Header1' locked='true' title='SMP Negeri 65 Batam (Header)' type='Header' version='1' visible='true'>
         <b:includable id='main'>
           <a class='brand' expr:href='data:blog.homepageUrl'>
-            <b:if cond='data:useImage'>
-              <img expr:alt='data:title' expr:src='data:sourceUrl' height='40' width='40'/>
-            </b:if>
             <span><strong><data:title/></strong><small><data:description/></small></span>
           </a>
         </b:includable>
@@ -455,21 +481,21 @@ p { margin: 0 0 1em; }
 
     <nav aria-label='Menu utama' class='main-nav' id='main-nav'>
       <b:section class='nav-section' id='menu' maxwidgets='2' name='Menu Utama' showaddelement='no'>
-        <b:widget id='LinkList1' locked='true' title='Menu' type='LinkList' version='1' visible='true'>
+        <b:widget id='LinkList901' locked='true' title='Menu' type='LinkList' version='1' visible='true'>
           <b:widget-settings>
             <b:widget-setting name='sorting'>NONE</b:widget-setting>
             <b:widget-setting name='text-0'>Beranda</b:widget-setting>
             <b:widget-setting name='link-0'>/</b:widget-setting>
             <b:widget-setting name='text-1'>Profil</b:widget-setting>
             <b:widget-setting name='link-1'>/p/profil.html</b:widget-setting>
-            <b:widget-setting name='text-2'>Berita</b:widget-setting>
-            <b:widget-setting name='link-2'>/search</b:widget-setting>
-            <b:widget-setting name='text-3'>Literasi Digital</b:widget-setting>
-            <b:widget-setting name='link-3'>/search/label/Literasi</b:widget-setting>
-            <b:widget-setting name='text-4'>Album</b:widget-setting>
-            <b:widget-setting name='link-4'>/p/album.html</b:widget-setting>
-            <b:widget-setting name='text-5'>Layanan BK</b:widget-setting>
-            <b:widget-setting name='link-5'>/p/layanan-bk.html</b:widget-setting>
+            <b:widget-setting name='text-2'>Literasi Digital</b:widget-setting>
+            <b:widget-setting name='link-2'>https://fliphtml5.com/bookcase/gqoiv</b:widget-setting>
+            <b:widget-setting name='text-3'>Album</b:widget-setting>
+            <b:widget-setting name='link-3'>https://sites.google.com/view/galeri65batam/hasil-karya</b:widget-setting>
+            <b:widget-setting name='text-4'>Aplikasi SIMANTAP</b:widget-setting>
+            <b:widget-setting name='link-4'>https://play.google.com/store/apps/details?id=com.ict.simantap_smpn_65_batam</b:widget-setting>
+            <b:widget-setting name='text-5'>Bimbingan Konseling</b:widget-setting>
+            <b:widget-setting name='link-5'>https://www.sra65batam.my.id/</b:widget-setting>
           </b:widget-settings>
           <b:includable id='main'>
             <div class='nav-links'>
@@ -479,15 +505,15 @@ p { margin: 0 0 1em; }
             </div>
           </b:includable>
         </b:widget>
-        <b:widget id='LinkList2' locked='true' title='Tombol Aplikasi' type='LinkList' version='1' visible='true'>
+        <b:widget id='LinkList902' locked='true' title='Tombol Aplikasi' type='LinkList' version='1' visible='true'>
           <b:widget-settings>
             <b:widget-setting name='sorting'>NONE</b:widget-setting>
             <b:widget-setting name='text-0'>SIMANTAP 65</b:widget-setting>
-            <b:widget-setting name='link-0'>#</b:widget-setting>
+            <b:widget-setting name='link-0'>/p/aplikasi-simantap-smpn-65-batam.html</b:widget-setting>
           </b:widget-settings>
           <b:includable id='main'>
             <b:loop values='data:links' var='link'>
-              <a class='btn btn-primary btn-sm nav-cta' expr:href='data:link.target' rel='noopener' target='_blank'>
+              <a class='btn btn-primary btn-sm nav-cta' expr:href='data:link.target'>
                 <svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><rect height='7' rx='1.5' width='7' x='4' y='4'/><rect height='7' rx='1.5' width='7' x='13' y='4'/><rect height='7' rx='1.5' width='7' x='4' y='13'/><rect height='7' rx='1.5' width='7' x='13' y='13'/></svg>
                 <data:link.name/>
               </a>
@@ -515,7 +541,7 @@ p { margin: 0 0 1em; }
         </div>
       </div>
       <b:section class='hero-logo' id='hero-logo' maxwidgets='1' name='Logo Besar (Beranda)' showaddelement='no'>
-        <b:widget id='Image1' locked='true' title='Logo SMP Negeri 65 Batam' type='Image' version='1' visible='true'>
+        <b:widget id='Image901' locked='true' title='Logo SMP Negeri 65 Batam' type='Image' version='1' visible='true'>
           <b:includable id='main'>
             <b:if cond='data:sourceUrl'>
               <img expr:alt='data:title' expr:src='data:sourceUrl'/>
@@ -528,17 +554,17 @@ p { margin: 0 0 1em; }
 
   <div class='container'>
     <b:section class='quick-section' id='quick' maxwidgets='1' name='Akses Cepat (Beranda)' showaddelement='no'>
-      <b:widget id='LinkList3' locked='true' title='Akses Cepat' type='LinkList' version='1' visible='true'>
+      <b:widget id='LinkList903' locked='true' title='Akses Cepat' type='LinkList' version='1' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='sorting'>NONE</b:widget-setting>
           <b:widget-setting name='text-0'>SIMANTAP 65</b:widget-setting>
-          <b:widget-setting name='link-0'>#</b:widget-setting>
+          <b:widget-setting name='link-0'>/p/aplikasi-simantap-smpn-65-batam.html</b:widget-setting>
           <b:widget-setting name='text-1'>Literasi Digital</b:widget-setting>
-          <b:widget-setting name='link-1'>/search/label/Literasi</b:widget-setting>
-          <b:widget-setting name='text-2'>Layanan BK</b:widget-setting>
-          <b:widget-setting name='link-2'>/p/layanan-bk.html</b:widget-setting>
+          <b:widget-setting name='link-1'>https://fliphtml5.com/bookcase/gqoiv</b:widget-setting>
+          <b:widget-setting name='text-2'>Bimbingan Konseling</b:widget-setting>
+          <b:widget-setting name='link-2'>https://www.sra65batam.my.id/</b:widget-setting>
           <b:widget-setting name='text-3'>Album</b:widget-setting>
-          <b:widget-setting name='link-3'>/p/album.html</b:widget-setting>
+          <b:widget-setting name='link-3'>https://sites.google.com/view/galeri65batam/hasil-karya</b:widget-setting>
         </b:widget-settings>
         <b:includable id='main'>
           <nav aria-label='Akses cepat' class='quick'>
@@ -593,7 +619,7 @@ p { margin: 0 0 1em; }
     <b:if cond='data:view.isMultipleItems and not data:view.isHomepage'>
       <div class='toolbar'>
         <b:section class='chips-section' id='labels' maxwidgets='1' name='Kategori (Halaman Berita)' showaddelement='no'>
-          <b:widget id='Label1' locked='true' title='Kategori' type='Label' version='1' visible='true'>
+          <b:widget id='Label901' locked='true' title='Kategori' type='Label' version='1' visible='true'>
             <b:includable id='main'>
               <div aria-label='Filter kategori' class='chips'>
                 <a class='chip' expr:href='data:blog.homepageUrl + &quot;search&quot;'>Semua</a>
@@ -698,7 +724,7 @@ p { margin: 0 0 1em; }
   <section class='block block-alt'>
     <div class='container'>
       <b:section class='welcome-section' id='sambutan' maxwidgets='1' name='Sambutan Kepala Sekolah (Beranda)' showaddelement='no'>
-        <b:widget id='Image2' locked='true' title='Sambutan Kepala Sekolah' type='Image' version='1' visible='true'>
+        <b:widget id='Image902' locked='true' title='Sambutan Kepala Sekolah' type='Image' version='1' visible='true'>
           <b:includable id='main'>
             <div class='welcome'>
               <b:if cond='data:sourceUrl'>
@@ -723,10 +749,10 @@ p { margin: 0 0 1em; }
   <section class='block'>
     <div class='container'>
       <b:section class='cta-section' id='ajakan' maxwidgets='1' name='Ajakan (Beranda)' showaddelement='no'>
-        <b:widget id='HTML1' locked='true' title='Ada yang ingin kamu ceritakan?' type='HTML' version='1' visible='true'>
+        <b:widget id='HTML901' locked='true' title='Ada yang ingin kamu ceritakan?' type='HTML' version='1' visible='true'>
           <b:widget-settings>
             <b:widget-setting name='content'><![CDATA[<p>Portal Sekolah Ramah Anak dan layanan Bimbingan Konseling siap menjadi ruang aman untuk bercerita.</p>
-<a class="btn btn-light" href="/p/layanan-bk.html">Layanan BK</a>]]></b:widget-setting>
+<a class="btn btn-light" href="https://www.sra65batam.my.id/">Buka Portal Ramah Anak</a>]]></b:widget-setting>
           </b:widget-settings>
           <b:includable id='main'>
             <div class='cta-band'>
@@ -748,7 +774,7 @@ p { margin: 0 0 1em; }
 <footer class='site-footer'>
   <div class='container footer-grid'>
     <b:section class='footer-col footer-map' id='footer-lokasi' maxwidgets='2' name='Footer: Lokasi &amp; Kontak' showaddelement='no'>
-      <b:widget id='HTML3' locked='true' title='Lokasi SMPN 65 Batam' type='HTML' version='1' visible='true'>
+      <b:widget id='HTML903' locked='true' title='Lokasi SMPN 65 Batam' type='HTML' version='1' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='content'><![CDATA[<iframe src="https://www.google.com/maps?q=SMP+Negeri+65+Batam&output=embed" title="Peta lokasi SMP Negeri 65 Batam" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
 <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=SMP+Negeri+65+Batam" target="_blank" rel="noopener">Buka di Google Maps &#8599;</a>]]></b:widget-setting>
@@ -758,7 +784,7 @@ p { margin: 0 0 1em; }
           <div class='footer-html'><data:content/></div>
         </b:includable>
       </b:widget>
-      <b:widget id='HTML2' locked='true' title='Kontak' type='HTML' version='1' visible='true'>
+      <b:widget id='HTML902' locked='true' title='Kontak' type='HTML' version='1' visible='true'>
         <b:includable id='main'>
           <b:if cond='data:content'>
             <div class='footer-html'><data:content/></div>
@@ -768,19 +794,21 @@ p { margin: 0 0 1em; }
     </b:section>
 
     <b:section class='footer-col' id='footer-links' maxwidgets='1' name='Footer: Tautan' showaddelement='no'>
-      <b:widget id='LinkList4' locked='true' title='Tautan' type='LinkList' version='1' visible='true'>
+      <b:widget id='LinkList904' locked='true' title='Tautan' type='LinkList' version='1' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='sorting'>NONE</b:widget-setting>
           <b:widget-setting name='text-0'>Profil</b:widget-setting>
           <b:widget-setting name='link-0'>/p/profil.html</b:widget-setting>
-          <b:widget-setting name='text-1'>Berita</b:widget-setting>
+          <b:widget-setting name='text-1'>Berita &amp; Pengumuman</b:widget-setting>
           <b:widget-setting name='link-1'>/search</b:widget-setting>
           <b:widget-setting name='text-2'>Literasi Digital</b:widget-setting>
-          <b:widget-setting name='link-2'>/search/label/Literasi</b:widget-setting>
+          <b:widget-setting name='link-2'>https://fliphtml5.com/bookcase/gqoiv</b:widget-setting>
           <b:widget-setting name='text-3'>Album</b:widget-setting>
-          <b:widget-setting name='link-3'>/p/album.html</b:widget-setting>
-          <b:widget-setting name='text-4'>Layanan BK</b:widget-setting>
-          <b:widget-setting name='link-4'>/p/layanan-bk.html</b:widget-setting>
+          <b:widget-setting name='link-3'>https://sites.google.com/view/galeri65batam/hasil-karya</b:widget-setting>
+          <b:widget-setting name='text-4'>Aplikasi SIMANTAP</b:widget-setting>
+          <b:widget-setting name='link-4'>https://play.google.com/store/apps/details?id=com.ict.simantap_smpn_65_batam</b:widget-setting>
+          <b:widget-setting name='text-5'>Bimbingan Konseling</b:widget-setting>
+          <b:widget-setting name='link-5'>https://www.sra65batam.my.id/</b:widget-setting>
         </b:widget-settings>
         <b:includable id='main'>
           <h3><data:title/></h3>
@@ -794,7 +822,7 @@ p { margin: 0 0 1em; }
     </b:section>
 
     <b:section class='footer-col' id='footer-penting' maxwidgets='1' name='Footer: Link Penting Pendidikan' showaddelement='no'>
-      <b:widget id='LinkList5' locked='true' title='Link Penting Pendidikan' type='LinkList' version='1' visible='true'>
+      <b:widget id='LinkList905' locked='true' title='Link Penting Pendidikan' type='LinkList' version='1' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='sorting'>NONE</b:widget-setting>
           <b:widget-setting name='text-0'>Cek NISN Siswa</b:widget-setting>
@@ -808,7 +836,7 @@ p { margin: 0 0 1em; }
           <h3><data:title/></h3>
           <ul class='footer-list footer-links'>
             <b:loop values='data:links' var='link'>
-              <li><svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M5 12h14M13 6l6 6-6 6'/></svg><a expr:href='data:link.target' rel='noopener' target='_blank'><data:link.name/></a></li>
+              <li><svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M5 12h14M13 6l6 6-6 6'/></svg><a expr:href='data:link.target'><data:link.name/></a></li>
             </b:loop>
           </ul>
         </b:includable>
@@ -816,7 +844,7 @@ p { margin: 0 0 1em; }
     </b:section>
 
     <b:section class='footer-col' id='footer-extra' maxwidgets='3' name='Footer: Kata Mutiara &amp; Gadget Lain' showaddelement='yes'>
-      <b:widget id='HTML4' locked='false' title='Kata-Kata Mutiara' type='HTML' version='1' visible='true'>
+      <b:widget id='HTML904' locked='false' title='Kata-Kata Mutiara' type='HTML' version='1' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='content'><![CDATA[<p>Jika kamu tak tahan penatnya belajar, maka kamu akan menanggung perihnya kebodohan.</p>
 <cite>Imam Syafi'i</cite>]]></b:widget-setting>
@@ -850,6 +878,41 @@ p { margin: 0 0 1em; }
     });
   }
 
+  // Sub-menu: item menu yang namanya diawali "_" (mis. "_Visi Misi") masuk ke
+  // dropdown item di atasnya. Diatur lewat Tata Letak → widget Menu.
+  var navLinks = document.querySelector(".nav-links");
+  if (navLinks) {
+    var parent = null;
+    [].slice.call(navLinks.children).forEach(function (a) {
+      if (a.tagName !== "A") return;
+      var text = a.textContent.trim();
+      if (text.charAt(0) === "_" && parent) {
+        a.textContent = text.replace(/^_+\s*/, "");
+        if (!parent.sub) {
+          parent.sub = document.createElement("div");
+          parent.sub.className = "submenu";
+          parent.item.classList.add("has-sub");
+          parent.item.appendChild(parent.sub);
+        }
+        parent.sub.appendChild(a);
+      } else {
+        var item = document.createElement("div");
+        item.className = "nav-item";
+        navLinks.insertBefore(item, a);
+        item.appendChild(a);
+        parent = { item: item, sub: null };
+      }
+    });
+  }
+
+  // Tautan ke situs lain dibuka di tab baru
+  [].slice.call(document.querySelectorAll("a[href]")).forEach(function (a) {
+    if (/^https?:$/.test(a.protocol) && a.host !== location.host) {
+      a.target = "_blank";
+      a.rel = "noopener";
+    }
+  });
+
   // Penanda menu aktif
   function clean(path) {
     try { path = decodeURIComponent(path); } catch (e) {}
@@ -862,13 +925,19 @@ p { margin: 0 0 1em; }
     var u = new URL(a.getAttribute("href"), location.href);
     if (u.host === location.host && clean(u.pathname) === here) match = a;
   });
+  // Berita (postingan, pencarian, label) termasuk menu Beranda
   if (!match && (/^\/\d{4}\/\d{2}\//.test(here) || here.indexOf("/search") === 0)) {
     links.forEach(function (a) {
       var u = new URL(a.getAttribute("href"), location.href);
-      if (u.host === location.host && clean(u.pathname) === "/search") match = a;
+      if (!match && u.host === location.host && clean(u.pathname) === "/") match = a;
     });
   }
-  if (match) { match.classList.add("active"); match.setAttribute("aria-current", "page"); }
+  if (match) {
+    match.classList.add("active");
+    match.setAttribute("aria-current", "page");
+    var top = match.closest(".nav-item");
+    if (top && top.firstElementChild !== match) top.firstElementChild.classList.add("active");
+  }
 
   // Penanda kategori aktif
   var q = new URLSearchParams(location.search).get("q");

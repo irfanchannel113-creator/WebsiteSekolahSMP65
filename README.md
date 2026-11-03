@@ -10,10 +10,8 @@ Desain website sekolah bertema biru dan minimalis.
 |---|---|
 | `index.html` | Beranda: akses cepat, berita terbaru, sambutan kepala sekolah |
 | `profil.html` | Sambutan, visi & misi, identitas sekolah |
-| `berita.html` | Semua berita dengan filter kategori dan pencarian (`?kategori=Literasi` = Literasi Digital) |
+| `berita.html` | Semua berita dengan filter kategori dan pencarian |
 | `artikel.html?id=...` | Detail berita |
-| `galeri.html` | Album foto |
-| `layanan-bk.html` | Layanan Bimbingan Konseling & Portal Sekolah Ramah Anak |
 
 ## Mengubah isi
 Semua teks dan tautan ada di **`assets/js/data.js`**. Isian yang kosong (`""` atau `[]`) otomatis disembunyikan

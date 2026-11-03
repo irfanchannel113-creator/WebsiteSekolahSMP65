@@ -56,24 +56,29 @@
   }
 
   /* ---------- Header ---------- */
+  var T = S.tautan;
   var NAV = [
     { id: "beranda", label: "Beranda", href: "index.html" },
     { id: "profil", label: "Profil", href: "profil.html" },
-    { id: "berita", label: "Berita", href: "berita.html" },
-    { id: "literasi", label: "Literasi Digital", href: "berita.html?kategori=Literasi" },
-    { id: "galeri", label: "Album", href: "galeri.html" },
-    { id: "bk", label: "Layanan BK", href: "layanan-bk.html" }
+    { id: "literasi", label: "Literasi Digital", href: T.literasi },
+    { id: "album", label: "Album", href: T.album },
+    { id: "aplikasi", label: "Aplikasi SIMANTAP", href: T.aplikasi },
+    { id: "bk", label: "Bimbingan Konseling", href: T.bk }
   ];
+  // Tautan ke situs lain dibuka di tab baru
+  function navLink(n, cls) {
+    var ext = /^https?:/.test(n.href) ? ' target="_blank" rel="noopener"' : "";
+    return '<a href="' + esc(n.href) + '"' + ext + (cls || "") + ">" + n.label + "</a>";
+  }
 
   function aktif(id) {
-    if (page === "berita" && param("kategori") === "Literasi") return id === "literasi";
-    if (page === "artikel") return id === "berita";
+    if (page === "berita" || page === "artikel") return id === "beranda";
     return id === page;
   }
 
   function renderHeader() {
     var links = NAV.map(function (n) {
-      return '<a href="' + n.href + '"' + (aktif(n.id) ? ' class="active" aria-current="page"' : "") + ">" + n.label + "</a>";
+      return navLink(n, aktif(n.id) ? ' class="active" aria-current="page"' : "");
     }).join("");
 
     $("#site-header").innerHTML =
@@ -132,7 +137,8 @@
       '<div class="container footer-grid">' +
         lokasi +
         '<div class="footer-col"><h3>Tautan</h3><ul class="footer-list footer-links">' +
-          NAV.slice(1).map(function (n) { return "<li>" + icon("arrow") + '<a href="' + n.href + '">' + n.label + "</a></li>"; }).join("") +
+          [NAV[1], { label: "Berita &amp; Pengumuman", href: "berita.html" }].concat(NAV.slice(2))
+            .map(function (n) { return "<li>" + icon("arrow") + navLink(n) + "</li>"; }).join("") +
         "</ul></div>" +
         penting + mutiara +
       "</div>" +
@@ -172,10 +178,10 @@
     beranda: function () {
       // Akses cepat
       var quick = [
-        { ic: "app", t: "SIMANTAP 65", d: "Aplikasi sekolah", url: S.tautan.simantap, ext: true },
-        { ic: "book", t: "Literasi Digital", d: "Kegiatan & karya literasi", url: "berita.html?kategori=Literasi" },
-        { ic: "chat", t: "Layanan BK", d: "Bimbingan & konseling", url: "layanan-bk.html" },
-        { ic: "image", t: "Album", d: "Dokumentasi kegiatan", url: "galeri.html" }
+        { ic: "app", t: "SIMANTAP 65", d: "Aplikasi sekolah", url: T.simantap, ext: true },
+        { ic: "book", t: "Literasi Digital", d: "Kegiatan & karya literasi", url: T.literasi, ext: true },
+        { ic: "chat", t: "Bimbingan Konseling", d: "Sekolah Ramah Anak", url: T.bk, ext: true },
+        { ic: "image", t: "Album", d: "Hasil karya & kegiatan", url: T.album, ext: true }
       ];
       $("#quick").innerHTML = quick.map(function (q) {
         var inner = '<span class="quick-ic">' + icon(q.ic) + "</span><span><strong>" + q.t + "</strong><small>" + q.d + "</small></span>";
@@ -278,35 +284,6 @@
         "<h1>" + esc(b.judul) + "</h1>" +
         (b.gambar ? '<img class="article-img" src="' + esc(b.gambar) + '" alt="">' : "") +
         '<div class="prose">' + isi + "</div>";
-    },
-
-    galeri: function () {
-      var g = S.galeri;
-      $("#gallery").innerHTML = g.length
-        ? g.map(function (f, i) {
-            return '<button type="button" class="gallery-item" data-i="' + i + '"><img src="' + esc(f.src) + '" alt="' + esc(f.keterangan || "") + '" loading="lazy">' +
-              (f.keterangan ? "<span>" + esc(f.keterangan) + "</span>" : "") + "</button>";
-          }).join("")
-        : kosong("Belum ada foto di album.");
-
-      var dlg = $("#lightbox");
-      $("#gallery").addEventListener("click", function (e) {
-        var it = e.target.closest(".gallery-item");
-        if (!it) return;
-        var f = g[+it.getAttribute("data-i")];
-        dlg.querySelector("img").src = f.src;
-        dlg.querySelector("img").alt = f.keterangan || "";
-        dlg.querySelector("p").textContent = f.keterangan || "";
-        dlg.showModal();
-      });
-      dlg.addEventListener("click", function () { dlg.close(); });
-    },
-
-    bk: function () {
-      var cta = $("#portal-cta");
-      if (cta) cta.outerHTML = S.tautan.portalRamahAnak
-        ? extLink(S.tautan.portalRamahAnak, "Buka Portal Ramah Anak" + icon("arrow"), "btn btn-light")
-        : '<a class="btn btn-light" href="artikel.html?id=portal-sekolah-ramah-anak">Tentang Portal Ramah Anak' + icon("arrow") + "</a>";
     }
   };
 
