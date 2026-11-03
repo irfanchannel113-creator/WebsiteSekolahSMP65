@@ -287,6 +287,95 @@ p { margin: 0 0 1em; }
 .prose { font-size: 1rem; }
 .prose p { margin-bottom: .9em; }
 
+/* ---------- Isi halaman & postingan (dipakai prototipe dan Blogger) ---------- */
+/* Seragamkan font yang terbawa dari editor Blogger (isi halaman/postingan lama) */
+.post-body [style*="font-family"], .post-body font[face] { font-family: inherit !important; }
+.post-body h1, .post-body h2, .post-body h3, .post-body h4,
+.post-body h1 *, .post-body h2 *, .post-body h3 *, .post-body h4 * { font-family: var(--font-head) !important; }
+.post-body table td, .post-body table th, .post-body table * { font-family: var(--font-head); }
+/* Tabel lebar (mis. daftar guru) bisa digeser di layar kecil */
+@media (max-width: 760px) {
+  .post-body table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+}
+.post-body { overflow-wrap: break-word; }
+.post-body img { height: auto; border-radius: 10px; }
+.post-body .separator a, .post-body a[imageanchor] { margin: 0 !important; display: inline-block; }
+.post-body h2, .post-body h3, .post-body h4 { margin: 1.4em 0 .5em; color: var(--blue-900); }
+.post-body ul, .post-body ol { padding-left: 1.3em; margin: 0 0 1em; }
+.post-body li { margin-bottom: .35em; }
+.post-body blockquote { margin: 1.2em 0; padding: 12px 18px; border-left: 4px solid var(--blue-500); background: var(--blue-50); border-radius: 0 10px 10px 0; }
+.post-body table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: .95rem; }
+.post-body th, .post-body td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; }
+.post-body th { background: var(--blue-50); font-family: var(--font-head); }
+.post-body iframe { max-width: 100%; }
+.post-body .block { padding: 0 0 32px; }
+.post-body .block-head { margin-bottom: 14px; }
+.post-body .card h3 { margin-top: 0; }
+.post-body .block-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.post-body .block-head h2 { margin: 0; }
+
+/* ---------- Komponen halaman Profil ---------- */
+.page-intro { font-size: 1.05rem; color: var(--muted); max-width: 72ch; margin: 0 0 24px; }
+.post-body .visi-card { background: var(--blue-900); color: #fff; border-radius: 20px; padding: 28px 32px; margin: 0 0 32px; }
+.post-body .visi-card .eyebrow { color: #9cc0ff; margin-bottom: 10px; }
+.post-body .visi-card .visi-text { font-family: var(--font-head); font-size: clamp(1.2rem, 2.4vw, 1.6rem); font-weight: 700; line-height: 1.4; margin: 0; color: #fff; }
+.post-body .num-list { list-style: none; counter-reset: n; padding: 0; margin: 0; display: grid; gap: 10px; }
+.post-body .num-list li {
+  counter-increment: n; display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: start;
+  padding: 14px 16px; margin: 0; border: 1px solid var(--line); border-radius: 12px; background: #fff;
+}
+.post-body .num-list li::before {
+  content: counter(n); width: 34px; height: 34px; border-radius: 10px; background: var(--blue-50); color: var(--blue-700);
+  display: grid; place-items: center; font-family: var(--font-head); font-weight: 700;
+}
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 0 0 32px; }
+.stat { background: var(--blue-50); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+.stat strong { display: block; font-family: var(--font-head); font-size: 1.9rem; line-height: 1.1; color: var(--blue-700); }
+.stat span { font-family: var(--font-head); font-size: .85rem; color: var(--muted); }
+.people-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+.person { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; text-align: center; }
+.post-body .person img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 0; background: var(--blue-50); }
+.person > div { padding: 12px 14px 14px; }
+.person strong { display: block; font-family: var(--font-head); color: var(--ink); line-height: 1.3; }
+.person span { font-family: var(--font-head); font-size: .84rem; color: var(--muted); }
+.role-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.role { border: 1px solid var(--line); border-left: 3px solid var(--blue-600); border-radius: 10px; padding: 12px 14px; background: #fff; }
+.role span { display: block; font-family: var(--font-head); font-size: .8rem; color: var(--muted); }
+.role strong { font-family: var(--font-head); color: var(--ink); }
+.post-body .org-chart { margin: 0 0 32px; }
+.post-body .org-chart img { width: 100%; border: 1px solid var(--line); background: var(--blue-50); min-height: 160px; }
+.post-body .org-chart figcaption { margin-top: 8px; font-family: var(--font-head); font-size: .85rem; color: var(--muted); text-align: center; }
+.post-body .timeline { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid var(--blue-100); display: grid; gap: 18px; }
+.post-body .timeline li { position: relative; margin: 0; }
+.post-body .timeline li::before {
+  content: ""; position: absolute; left: -29px; top: 5px; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--blue-600); box-shadow: 0 0 0 4px var(--blue-50);
+}
+.post-body .timeline strong { display: block; font-family: var(--font-head); color: var(--blue-700); }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.card-grid .card { padding: 18px; }
+.card-grid .card p { color: var(--muted); font-size: .95rem; margin: 0; }
+.post-body .card-grid .card h3 { margin: 0 0 6px; }
+.doc-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 0 0 28px; }
+.contact-card { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; background: #fff; }
+.post-body .contact-card h3 { display: flex; align-items: center; gap: 10px; font-size: .95rem; margin: 0 0 8px; }
+.contact-card h3::before {
+  content: ""; flex: none; width: 36px; height: 36px; border-radius: 10px;
+  background: var(--blue-50) var(--ico, none) center / 18px no-repeat;
+}
+.contact-card p { margin: 0; }
+.ico-pin { --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d5fd1' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z'/%3E%3Ccircle cx='12' cy='9.5' r='2.5'/%3E%3C/svg%3E"); }
+.ico-phone { --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d5fd1' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z'/%3E%3C/svg%3E"); }
+.ico-mail { --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d5fd1' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpath d='M3 7l9 6 9-6'/%3E%3C/svg%3E"); }
+.ico-clock { --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d5fd1' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E"); }
+.ico-link { --ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d5fd1' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1'/%3E%3Cpath d='M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1'/%3E%3C/svg%3E"); }
+.post-body .map-embed iframe { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: 14px; background: var(--blue-50); }
+@media (max-width: 600px) {
+  .post-body .visi-card { padding: 22px 20px; }
+  .stat strong { font-size: 1.5rem; }
+}
+
 /* ---------- Galeri ---------- */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
 .gallery-item { position: relative; padding: 0; border: 0; border-radius: 12px; overflow: hidden; cursor: zoom-in; aspect-ratio: 1; background: var(--blue-50); }
@@ -409,29 +498,6 @@ p { margin: 0 0 1em; }
 /* Artikel & halaman statis */
 .view-single .main-section { padding-top: 0; }
 .article-page { max-width: 1120px; padding: 32px 0 52px; }
-/* Seragamkan font yang terbawa dari editor Blogger (isi halaman/postingan lama) */
-.post-body [style*="font-family"], .post-body font[face] { font-family: inherit !important; }
-.post-body h1, .post-body h2, .post-body h3, .post-body h4,
-.post-body h1 *, .post-body h2 *, .post-body h3 *, .post-body h4 * { font-family: var(--font-head) !important; }
-.post-body table td, .post-body table th, .post-body table * { font-family: var(--font-head); }
-/* Tabel lebar (mis. daftar guru) bisa digeser di layar kecil */
-@media (max-width: 760px) {
-  .post-body table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
-}
-.post-body { overflow-wrap: break-word; }
-.post-body img { height: auto; border-radius: 10px; }
-.post-body .separator a, .post-body a[imageanchor] { margin: 0 !important; display: inline-block; }
-.post-body h2, .post-body h3, .post-body h4 { margin: 1.4em 0 .5em; color: var(--blue-900); }
-.post-body ul, .post-body ol { padding-left: 1.3em; margin: 0 0 1em; }
-.post-body li { margin-bottom: .35em; }
-.post-body blockquote { margin: 1.2em 0; padding: 12px 18px; border-left: 4px solid var(--blue-500); background: var(--blue-50); border-radius: 0 10px 10px 0; }
-.post-body table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: .95rem; }
-.post-body th, .post-body td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; }
-.post-body th { background: var(--blue-50); font-family: var(--font-head); }
-.post-body iframe { max-width: 100%; }
-.post-body .block { padding: 0 0 32px; }
-.post-body .block-head { margin-bottom: 14px; }
-.post-body .card h3 { margin-top: 0; }
 
 /* Footer dari widget */
 .site-footer .widget h3 { margin-top: 0; }
@@ -497,19 +563,19 @@ p { margin: 0 0 1em; }
             <b:widget-setting name='text-1'>Profil</b:widget-setting>
             <b:widget-setting name='link-1'>#</b:widget-setting>
             <b:widget-setting name='text-2'>_Visi Misi</b:widget-setting>
-            <b:widget-setting name='link-2'>/p/visi-misi-sekolah.html</b:widget-setting>
+            <b:widget-setting name='link-2'>/p/visi-dan-misi.html</b:widget-setting>
             <b:widget-setting name='text-3'>_Daftar Guru dan Tenaga Kependidikan</b:widget-setting>
-            <b:widget-setting name='link-3'>/p/daftar-guru-dan-tenaga-kependidikan.html</b:widget-setting>
+            <b:widget-setting name='link-3'>/p/guru-dan-tenaga-kependidikan.html</b:widget-setting>
             <b:widget-setting name='text-4'>_Struktur Organisasi</b:widget-setting>
-            <b:widget-setting name='link-4'>/p/struktur-organisasi.html</b:widget-setting>
+            <b:widget-setting name='link-4'>/p/struktur-organisasi-sekolah.html</b:widget-setting>
             <b:widget-setting name='text-5'>_Sejarah</b:widget-setting>
-            <b:widget-setting name='link-5'>/p/sejarah-smpn-65-batam.html</b:widget-setting>
+            <b:widget-setting name='link-5'>/p/sejarah-sekolah.html</b:widget-setting>
             <b:widget-setting name='text-6'>_Data Statistik</b:widget-setting>
-            <b:widget-setting name='link-6'>/p/statistik.html</b:widget-setting>
+            <b:widget-setting name='link-6'>/p/data-statistik-sekolah.html</b:widget-setting>
             <b:widget-setting name='text-7'>_Kurikulum</b:widget-setting>
-            <b:widget-setting name='link-7'>/p/kurikulum-merdeka.html</b:widget-setting>
+            <b:widget-setting name='link-7'>/p/kurikulum-sekolah.html</b:widget-setting>
             <b:widget-setting name='text-8'>_Alamat dan Kontak</b:widget-setting>
-            <b:widget-setting name='link-8'>/p/alamat-dan-kontak.html</b:widget-setting>
+            <b:widget-setting name='link-8'>/p/alamat-dan-kontak-sekolah.html</b:widget-setting>
             <b:widget-setting name='text-9'>Literasi Digital</b:widget-setting>
             <b:widget-setting name='link-9'>https://fliphtml5.com/bookcase/gqoiv</b:widget-setting>
             <b:widget-setting name='text-10'>Album</b:widget-setting>
@@ -559,7 +625,7 @@ p { margin: 0 0 1em; }
         <p class='lead'>Media informasi dan pengumuman sekolah untuk siswa, orang tua, dan masyarakat.</p>
         <div class='hero-actions'>
           <a class='btn btn-primary' expr:href='data:blog.homepageUrl + &quot;search&quot;'>Berita &amp; Pengumuman</a>
-          <a class='btn btn-outline' expr:href='data:blog.homepageUrl + &quot;p/visi-misi-sekolah.html&quot;'>Profil Sekolah</a>
+          <a class='btn btn-outline' expr:href='data:blog.homepageUrl + &quot;p/visi-dan-misi.html&quot;'>Profil Sekolah</a>
         </div>
       </div>
       <b:section class='hero-logo' id='hero-logo' maxwidgets='1' name='Logo Besar (Beranda)' showaddelement='no'>
@@ -832,7 +898,7 @@ p { margin: 0 0 1em; }
         <b:widget-settings>
           <b:widget-setting name='sorting'>NONE</b:widget-setting>
           <b:widget-setting name='text-0'>Visi Misi</b:widget-setting>
-          <b:widget-setting name='link-0'>/p/visi-misi-sekolah.html</b:widget-setting>
+          <b:widget-setting name='link-0'>/p/visi-dan-misi.html</b:widget-setting>
           <b:widget-setting name='text-1'>Berita &amp; Pengumuman</b:widget-setting>
           <b:widget-setting name='link-1'>/search</b:widget-setting>
           <b:widget-setting name='text-2'>Literasi Digital</b:widget-setting>
@@ -844,7 +910,7 @@ p { margin: 0 0 1em; }
           <b:widget-setting name='text-5'>Bimbingan Konseling</b:widget-setting>
           <b:widget-setting name='link-5'>https://www.sra65batam.my.id/</b:widget-setting>
           <b:widget-setting name='text-6'>Alamat dan Kontak</b:widget-setting>
-          <b:widget-setting name='link-6'>/p/alamat-dan-kontak.html</b:widget-setting>
+          <b:widget-setting name='link-6'>/p/alamat-dan-kontak-sekolah.html</b:widget-setting>
         </b:widget-settings>
         <b:includable id='main'>
           <h3><data:title/></h3>

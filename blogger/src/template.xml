@@ -58,19 +58,19 @@
             <b:widget-setting name='text-1'>Profil</b:widget-setting>
             <b:widget-setting name='link-1'>#</b:widget-setting>
             <b:widget-setting name='text-2'>_Visi Misi</b:widget-setting>
-            <b:widget-setting name='link-2'>/p/visi-misi-sekolah.html</b:widget-setting>
+            <b:widget-setting name='link-2'>/p/visi-dan-misi.html</b:widget-setting>
             <b:widget-setting name='text-3'>_Daftar Guru dan Tenaga Kependidikan</b:widget-setting>
-            <b:widget-setting name='link-3'>/p/daftar-guru-dan-tenaga-kependidikan.html</b:widget-setting>
+            <b:widget-setting name='link-3'>/p/guru-dan-tenaga-kependidikan.html</b:widget-setting>
             <b:widget-setting name='text-4'>_Struktur Organisasi</b:widget-setting>
-            <b:widget-setting name='link-4'>/p/struktur-organisasi.html</b:widget-setting>
+            <b:widget-setting name='link-4'>/p/struktur-organisasi-sekolah.html</b:widget-setting>
             <b:widget-setting name='text-5'>_Sejarah</b:widget-setting>
-            <b:widget-setting name='link-5'>/p/sejarah-smpn-65-batam.html</b:widget-setting>
+            <b:widget-setting name='link-5'>/p/sejarah-sekolah.html</b:widget-setting>
             <b:widget-setting name='text-6'>_Data Statistik</b:widget-setting>
-            <b:widget-setting name='link-6'>/p/statistik.html</b:widget-setting>
+            <b:widget-setting name='link-6'>/p/data-statistik-sekolah.html</b:widget-setting>
             <b:widget-setting name='text-7'>_Kurikulum</b:widget-setting>
-            <b:widget-setting name='link-7'>/p/kurikulum-merdeka.html</b:widget-setting>
+            <b:widget-setting name='link-7'>/p/kurikulum-sekolah.html</b:widget-setting>
             <b:widget-setting name='text-8'>_Alamat dan Kontak</b:widget-setting>
-            <b:widget-setting name='link-8'>/p/alamat-dan-kontak.html</b:widget-setting>
+            <b:widget-setting name='link-8'>/p/alamat-dan-kontak-sekolah.html</b:widget-setting>
             <b:widget-setting name='text-9'>Literasi Digital</b:widget-setting>
             <b:widget-setting name='link-9'>https://fliphtml5.com/bookcase/gqoiv</b:widget-setting>
             <b:widget-setting name='text-10'>Album</b:widget-setting>
@@ -120,7 +120,7 @@
         <p class='lead'>Media informasi dan pengumuman sekolah untuk siswa, orang tua, dan masyarakat.</p>
         <div class='hero-actions'>
           <a class='btn btn-primary' expr:href='data:blog.homepageUrl + &quot;search&quot;'>Berita &amp; Pengumuman</a>
-          <a class='btn btn-outline' expr:href='data:blog.homepageUrl + &quot;p/visi-misi-sekolah.html&quot;'>Profil Sekolah</a>
+          <a class='btn btn-outline' expr:href='data:blog.homepageUrl + &quot;p/visi-dan-misi.html&quot;'>Profil Sekolah</a>
         </div>
       </div>
       <b:section class='hero-logo' id='hero-logo' maxwidgets='1' name='Logo Besar (Beranda)' showaddelement='no'>
@@ -393,7 +393,7 @@
         <b:widget-settings>
           <b:widget-setting name='sorting'>NONE</b:widget-setting>
           <b:widget-setting name='text-0'>Visi Misi</b:widget-setting>
-          <b:widget-setting name='link-0'>/p/visi-misi-sekolah.html</b:widget-setting>
+          <b:widget-setting name='link-0'>/p/visi-dan-misi.html</b:widget-setting>
           <b:widget-setting name='text-1'>Berita &amp; Pengumuman</b:widget-setting>
           <b:widget-setting name='link-1'>/search</b:widget-setting>
           <b:widget-setting name='text-2'>Literasi Digital</b:widget-setting>
@@ -405,7 +405,7 @@
           <b:widget-setting name='text-5'>Bimbingan Konseling</b:widget-setting>
           <b:widget-setting name='link-5'>https://www.sra65batam.my.id/</b:widget-setting>
           <b:widget-setting name='text-6'>Alamat dan Kontak</b:widget-setting>
-          <b:widget-setting name='link-6'>/p/alamat-dan-kontak.html</b:widget-setting>
+          <b:widget-setting name='link-6'>/p/alamat-dan-kontak-sekolah.html</b:widget-setting>
         </b:widget-settings>
         <b:includable id='main'>
           <h3><data:title/></h3>

@@ -60,7 +60,7 @@
   var NAV = [
     { id: "beranda", label: "Beranda", href: "index.html" },
     { id: "profil", label: "Profil", href: "profil.html",
-      children: (S.menuProfil || []).map(function (p) { return { label: p.nama, href: p.url }; }) },
+      children: (S.menuProfil || []).map(function (p) { return { label: p.nama, href: "halaman.html?id=" + p.id }; }) },
     { id: "literasi", label: "Literasi Digital", href: T.literasi },
     { id: "album", label: "Album", href: T.album },
     { id: "aplikasi", label: "Aplikasi SIMANTAP", href: T.aplikasi },
@@ -74,6 +74,7 @@
 
   function aktif(id) {
     if (page === "berita" || page === "artikel") return id === "beranda";
+    if (page === "halaman") return id === "profil";
     return id === page;
   }
 
@@ -288,6 +289,19 @@
         "<h1>" + esc(b.judul) + "</h1>" +
         (b.gambar ? '<img class="article-img" src="' + esc(b.gambar) + '" alt="">' : "") +
         '<div class="prose">' + isi + "</div>";
+    },
+
+    // Pratinjau kerangka halaman Profil dari blogger/halaman/<id>.html
+    halaman: function () {
+      var p = (S.menuProfil || []).filter(function (x) { return x.id === param("id"); })[0];
+      var body = $("#page-body");
+      if (!p) { $("#page-title").textContent = "Halaman tidak ditemukan"; return; }
+      document.title = p.judul + " — " + S.sekolah.namaPendek;
+      $("#page-title").textContent = p.judul;
+      fetch("blogger/halaman/" + p.id + ".html")
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(function (html) { body.innerHTML = html; })
+        .catch(function () { body.innerHTML = kosong("Kerangka halaman tidak dapat dimuat. Buka lewat server (mis. python3 -m http.server)."); });
     }
   };
 

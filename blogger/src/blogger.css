@@ -69,29 +69,6 @@
 /* Artikel & halaman statis */
 .view-single .main-section { padding-top: 0; }
 .article-page { max-width: 1120px; padding: 32px 0 52px; }
-/* Seragamkan font yang terbawa dari editor Blogger (isi halaman/postingan lama) */
-.post-body [style*="font-family"], .post-body font[face] { font-family: inherit !important; }
-.post-body h1, .post-body h2, .post-body h3, .post-body h4,
-.post-body h1 *, .post-body h2 *, .post-body h3 *, .post-body h4 * { font-family: var(--font-head) !important; }
-.post-body table td, .post-body table th, .post-body table * { font-family: var(--font-head); }
-/* Tabel lebar (mis. daftar guru) bisa digeser di layar kecil */
-@media (max-width: 760px) {
-  .post-body table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
-}
-.post-body { overflow-wrap: break-word; }
-.post-body img { height: auto; border-radius: 10px; }
-.post-body .separator a, .post-body a[imageanchor] { margin: 0 !important; display: inline-block; }
-.post-body h2, .post-body h3, .post-body h4 { margin: 1.4em 0 .5em; color: var(--blue-900); }
-.post-body ul, .post-body ol { padding-left: 1.3em; margin: 0 0 1em; }
-.post-body li { margin-bottom: .35em; }
-.post-body blockquote { margin: 1.2em 0; padding: 12px 18px; border-left: 4px solid var(--blue-500); background: var(--blue-50); border-radius: 0 10px 10px 0; }
-.post-body table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: .95rem; }
-.post-body th, .post-body td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; }
-.post-body th { background: var(--blue-50); font-family: var(--font-head); }
-.post-body iframe { max-width: 100%; }
-.post-body .block { padding: 0 0 32px; }
-.post-body .block-head { margin-bottom: 14px; }
-.post-body .card h3 { margin-top: 0; }
 
 /* Footer dari widget */
 .site-footer .widget h3 { margin-top: 0; }

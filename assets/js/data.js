@@ -54,15 +54,15 @@ window.SITE = {
     sumber: "Imam Syafi'i"
   },
 
-  // Sub-menu Profil (halaman yang sudah ada di situs sekolah)
+  // Sub-menu Profil. "id" = nama file di blogger/halaman/ (kerangka halaman siap tempel ke Blogger)
   menuProfil: [
-    { nama: "Visi Misi", url: "https://www.smpn65batam.sch.id/p/visi-misi-sekolah.html" },
-    { nama: "Daftar Guru dan Tenaga Kependidikan", url: "https://www.smpn65batam.sch.id/p/daftar-guru-dan-tenaga-kependidikan.html" },
-    { nama: "Struktur Organisasi", url: "https://www.smpn65batam.sch.id/p/struktur-organisasi.html" },
-    { nama: "Sejarah", url: "https://www.smpn65batam.sch.id/p/sejarah-smpn-65-batam.html" },
-    { nama: "Data Statistik", url: "https://www.smpn65batam.sch.id/p/statistik.html" },
-    { nama: "Kurikulum", url: "https://www.smpn65batam.sch.id/p/kurikulum-merdeka.html" },
-    { nama: "Alamat dan Kontak", url: "https://www.smpn65batam.sch.id/p/alamat-dan-kontak.html" }
+    { nama: "Visi Misi", id: "visi-dan-misi", judul: "Visi dan Misi" },
+    { nama: "Daftar Guru dan Tenaga Kependidikan", id: "guru-dan-tenaga-kependidikan", judul: "Guru dan Tenaga Kependidikan" },
+    { nama: "Struktur Organisasi", id: "struktur-organisasi-sekolah", judul: "Struktur Organisasi" },
+    { nama: "Sejarah", id: "sejarah-sekolah", judul: "Sejarah" },
+    { nama: "Data Statistik", id: "data-statistik-sekolah", judul: "Data Statistik" },
+    { nama: "Kurikulum", id: "kurikulum-sekolah", judul: "Kurikulum" },
+    { nama: "Alamat dan Kontak", id: "alamat-dan-kontak-sekolah", judul: "Alamat dan Kontak" }
   ],
 
   // Tautan aplikasi/layanan eksternal. Isi URL lengkap.

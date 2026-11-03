@@ -12,6 +12,7 @@ Desain website sekolah bertema biru dan minimalis.
 | `profil.html` | Sambutan, visi & misi, identitas sekolah |
 | `berita.html` | Semua berita dengan filter kategori dan pencarian |
 | `artikel.html?id=...` | Detail berita |
+| `halaman.html?id=...` | Pratinjau 7 kerangka halaman Profil dari `blogger/halaman/` |
 
 ## Mengubah isi
 Semua teks dan tautan ada di **`assets/js/data.js`**. Isian yang kosong (`""` atau `[]`) otomatis disembunyikan
