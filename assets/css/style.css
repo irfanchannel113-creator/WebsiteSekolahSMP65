@@ -106,7 +106,7 @@ p { margin: 0 0 1em; }
   display: none; position: absolute; top: 100%; left: 0; z-index: 60; min-width: 260px;
   padding: 6px; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
 }
-.main-nav .submenu a { display: block; white-space: normal; padding: 8px 12px; }
+.main-nav .submenu a:not(.btn) { display: block; white-space: normal; padding: 8px 12px; }
 .has-sub:hover > .submenu, .has-sub:focus-within > .submenu, .has-sub.open > .submenu { display: block; }
 .nav-toggle {
   display: none; width: 42px; height: 42px; border-radius: 10px;
@@ -123,9 +123,15 @@ p { margin: 0 0 1em; }
     border-bottom: 1px solid var(--line); box-shadow: var(--shadow);
   }
   .main-nav.open { display: flex; }
-  .submenu { display: block; position: static; min-width: 0; padding: 0 0 4px 14px; border: 0; box-shadow: none; }
-  .main-nav .submenu a { padding: 8px 12px; font-size: .9rem; }
-  .has-sub > a::after { display: none; }
+  .submenu { position: static; min-width: 0; padding: 0 0 4px 14px; border: 0; box-shadow: none; }
+  .has-sub:hover > .submenu, .has-sub:focus-within > .submenu { display: none; }
+  .has-sub.open > .submenu { display: block; }
+  .main-nav .submenu a:not(.btn) { padding: 8px 12px; font-size: .9rem; }
+  .main-nav .nav-item.has-sub > a { display: flex; align-items: center; justify-content: space-between; }
+  .has-sub > a::after { width: 8px; height: 8px; margin: 0 6px 4px 12px; transition: transform .2s; }
+  .has-sub.open > a::after { transform: rotate(-135deg); margin-bottom: -4px; }
+  .main-nav a, .nav-toggle { -webkit-tap-highlight-color: transparent; }
+  .main-nav .nav-item.has-sub.open > a { color: var(--blue-900); background: var(--blue-50); }
   .main-nav a:not(.btn) { display: block; padding: 10px 12px; font-size: .95rem; }
   .nav-cta { margin: 10px 0 0; justify-content: center; }
 }

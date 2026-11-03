@@ -83,7 +83,9 @@
       var a = navLink(n, aktif(n.id) ? ' class="active" aria-current="page"' : "");
       if (!n.children || !n.children.length) return a;
       return '<div class="nav-item has-sub">' + a + '<div class="submenu">' +
-        n.children.map(function (c) { return navLink(c); }).join("") + "</div></div>";
+        n.children.map(function (c) {
+          return navLink(c, page === "halaman" && c.href === "halaman.html?id=" + param("id") ? ' class="active" aria-current="page"' : "");
+        }).join("") + "</div></div>";
     }).join("");
 
     $("#site-header").innerHTML =
@@ -104,6 +106,34 @@
       btn.setAttribute("aria-expanded", open);
       btn.setAttribute("aria-label", open ? "Tutup menu" : "Buka menu");
       btn.innerHTML = icon(open ? "close" : "menu");
+    });
+
+    // Dropdown: di ponsel sub-menu tertutup dan dibuka/ditutup dengan mengetuk induknya;
+    // di desktop terbuka saat kursor diarahkan, atau saat induk bertautan "#" diklik.
+    var mobileNav = window.matchMedia("(max-width: 1100px)");
+    [].slice.call(document.querySelectorAll(".has-sub > a")).forEach(function (a) {
+      var item = a.parentNode;
+      a.setAttribute("aria-haspopup", "true");
+      a.setAttribute("aria-expanded", "false");
+      a.addEventListener("click", function (e) {
+        if (a.getAttribute("href") !== "#" && !mobileNav.matches) return;
+        e.preventDefault();
+        a.setAttribute("aria-expanded", item.classList.toggle("open"));
+      });
+      // Sedang di salah satu halaman sub-menu: di ponsel langsung terbuka
+      if (mobileNav.matches && item.querySelector(".submenu a.active")) {
+        item.classList.add("open");
+        a.setAttribute("aria-expanded", "true");
+      }
+    });
+    document.addEventListener("click", function (e) {
+      if (mobileNav.matches) return;
+      [].slice.call(document.querySelectorAll(".has-sub.open")).forEach(function (el) {
+        if (!el.contains(e.target)) {
+          el.classList.remove("open");
+          el.firstElementChild.setAttribute("aria-expanded", "false");
+        }
+      });
     });
   }
 

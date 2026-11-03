@@ -79,18 +79,35 @@
     if (clean(u.pathname) === here && !(here === "/search" && q)) a.classList.add("active");
   });
 
-  // Tombol eksternal yang belum diisi (#) tampil nonaktif
-  // Induk dropdown bertautan "#": klik/ketuk membuka sub-menu
+  // Dropdown: di ponsel sub-menu tertutup dan dibuka/ditutup dengan mengetuk induknya;
+  // di desktop terbuka saat kursor diarahkan, atau saat induk bertautan "#" diklik.
+  var mobileNav = window.matchMedia("(max-width: 1100px)");
   [].slice.call(document.querySelectorAll(".has-sub > a")).forEach(function (a) {
+    var item = a.parentNode;
+    a.setAttribute("aria-haspopup", "true");
+    a.setAttribute("aria-expanded", "false");
     a.addEventListener("click", function (e) {
-      if (a.getAttribute("href") === "#") { e.preventDefault(); a.parentNode.classList.toggle("open"); }
+      if (a.getAttribute("href") !== "#" && !mobileNav.matches) return;
+      e.preventDefault();
+      a.setAttribute("aria-expanded", item.classList.toggle("open"));
     });
+    // Sedang di salah satu halaman sub-menu: di ponsel langsung terbuka
+    if (mobileNav.matches && item.querySelector(".submenu a.active")) {
+      item.classList.add("open");
+      a.setAttribute("aria-expanded", "true");
+    }
   });
   document.addEventListener("click", function (e) {
+    if (mobileNav.matches) return;
     [].slice.call(document.querySelectorAll(".has-sub.open")).forEach(function (el) {
-      if (!el.contains(e.target)) el.classList.remove("open");
+      if (!el.contains(e.target)) {
+        el.classList.remove("open");
+        el.firstElementChild.setAttribute("aria-expanded", "false");
+      }
     });
   });
+
+  // Tombol eksternal yang belum diisi (#) tampil nonaktif
   [].slice.call(document.querySelectorAll('a[href="#"]')).filter(function (a) {
     return !a.parentNode.classList.contains("has-sub");
   }).forEach(function (a) {
