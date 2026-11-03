@@ -15,8 +15,8 @@
   --bg: #ffffff;
   --radius: 14px;
   --shadow: 0 1px 2px rgba(13, 42, 92, .06), 0 8px 24px rgba(13, 42, 92, .06);
-  --font: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-head: "Raleway", "Noto Sans", system-ui, sans-serif;
+  --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-head: "Bitter", Georgia, serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -24,7 +24,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   font-family: var(--font);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--ink);
   background: var(--bg);
@@ -34,7 +34,7 @@ img { max-width: 100%; display: block; }
 a { color: var(--blue-600); text-decoration: none; }
 a:hover { color: var(--blue-700); }
 h1, h2, h3 { font-family: var(--font-head); line-height: 1.2; margin: 0 0 .4em; }
-h1 { font-size: clamp(1.75rem, 4vw, 2.6rem); font-weight: 800; }
+h1 { font-size: clamp(1.75rem, 4vw, 2.6rem); font-weight: 700; }
 h2 { font-size: clamp(1.3rem, 2.6vw, 1.65rem); font-weight: 700; }
 h3 { font-size: 1.05rem; font-weight: 700; }
 p { margin: 0 0 1em; }
@@ -79,7 +79,7 @@ p { margin: 0 0 1em; }
 .brand:hover { color: var(--ink); }
 .brand img { width: 40px; height: auto; }
 .brand span { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
-.brand strong { font-family: var(--font-head); font-size: 1rem; font-weight: 800; color: var(--blue-900); }
+.brand strong { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--blue-900); }
 .brand small { font-size: .74rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .main-nav { display: flex; align-items: center; gap: 4px; }
