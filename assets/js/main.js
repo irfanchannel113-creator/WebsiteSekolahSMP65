@@ -106,22 +106,40 @@
     ["instagram", "youtube", "facebook"].forEach(function (s) {
       if (k[s]) rows += "<li>" + icon("link") + '<a href="' + esc(k[s]) + '" target="_blank" rel="noopener">' + s.charAt(0).toUpperCase() + s.slice(1) + "</a></li>";
     });
-    var kontak = rows
-      ? '<div><h3>Kontak</h3><ul class="footer-list">' + rows + "</ul></div>"
+
+    var L = S.lokasi || {};
+    var lokasi = L.embed
+      ? '<div class="footer-col footer-map"><h3>' + esc(L.judul) + "</h3>" +
+          '<iframe src="' + esc(L.embed) + '" title="Peta lokasi ' + esc(S.sekolah.nama) + '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>' +
+          (L.tautan ? '<a class="map-link" href="' + esc(L.tautan) + '" target="_blank" rel="noopener">' + icon("pin") + "Buka di Google Maps</a>" : "") +
+          (rows ? '<ul class="footer-list">' + rows + "</ul>" : "") +
+        "</div>"
+      : "";
+
+    var penting = (S.linkPenting || []).length
+      ? '<div class="footer-col"><h3>Link Penting Pendidikan</h3><ul class="footer-list footer-links">' +
+          S.linkPenting.map(function (l) { return "<li>" + icon("arrow") + '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.nama) + "</a></li>"; }).join("") +
+        "</ul></div>"
+      : "";
+
+    var km = S.kataMutiara;
+    var mutiara = km && km.teks
+      ? '<div class="footer-col"><h3>Kata-Kata Mutiara</h3><blockquote class="footer-quote"><p>' + esc(km.teks) + "</p>" +
+          (km.sumber ? "<cite>" + esc(km.sumber) + "</cite>" : "") + "</blockquote></div>"
       : "";
 
     $("#site-footer").innerHTML =
       '<div class="container footer-grid">' +
-        '<div class="footer-brand">' +
-          '<img src="' + esc(S.sekolah.logo) + '" alt="" width="48" height="47">' +
-          "<div><strong>" + esc(S.sekolah.nama) + "</strong><p>" + esc(S.sekolah.slogan) + "</p></div>" +
-        "</div>" +
-        '<div><h3>Tautan</h3><ul class="footer-list">' +
-          NAV.slice(1).map(function (n) { return '<li><a href="' + n.href + '">' + n.label + "</a></li>"; }).join("") +
+        lokasi +
+        '<div class="footer-col"><h3>Tautan</h3><ul class="footer-list footer-links">' +
+          NAV.slice(1).map(function (n) { return "<li>" + icon("arrow") + '<a href="' + n.href + '">' + n.label + "</a></li>"; }).join("") +
         "</ul></div>" +
-        kontak +
+        penting + mutiara +
       "</div>" +
-      '<div class="container footer-bottom">© ' + new Date().getFullYear() + " " + esc(S.sekolah.nama) + "</div>";
+      '<div class="container footer-bottom">' +
+        '<span><img src="' + esc(S.sekolah.logo) + '" alt="" width="22" height="21">© ' + new Date().getFullYear() + " " + esc(S.sekolah.nama) + "</span>" +
+        "<span>" + esc(S.sekolah.slogan) + "</span>" +
+      "</div>";
   }
 
   /* ---------- Komponen ---------- */

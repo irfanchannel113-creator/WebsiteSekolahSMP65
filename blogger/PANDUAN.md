@@ -24,7 +24,11 @@ Jika Blogger bertanya soal widget lama yang tidak ada di tema baru, pilih **Hapu
 | Akses Cepat (Beranda) | Daftar Link | Ganti `#` pada SIMANTAP 65. Urutan menentukan ikon: aplikasi, buku, percakapan, foto. |
 | Sambutan Kepala Sekolah | Gambar | Foto kepala sekolah; **Keterangan** = kalimat sambutan singkat; **Tautan** = `/p/profil.html`. |
 | Ajakan (Beranda) | HTML | Teks ajakan dan tombol ke Layanan BK (sudah terisi). |
-| Footer: Kontak | HTML | Isi alamat/telepon/email (contoh di bawah). Kosongkan jika belum ada; bagian ini otomatis tersembunyi. |
+| Footer: Lokasi & Kontak | HTML "Lokasi SMPN 65 Batam" | Sudah berisi peta pencarian "SMP Negeri 65 Batam". Agar titiknya tepat: buka Google Maps → cari sekolah → **Bagikan** → **Sematkan peta** → salin kodenya, lalu ganti `<iframe …>` di widget ini. |
+| Footer: Lokasi & Kontak | HTML "Kontak" | Isi alamat/telepon/email (contoh di bawah), tampil di bawah peta. Kosongkan jika belum ada; bagian ini otomatis tersembunyi. |
+| Footer: Link Penting Pendidikan | Daftar Link | Cek NISN, Download Buku, Info GTK. **Cocokkan alamatnya dengan link di situs lama** sebelum diterbitkan. |
+| Footer: Kata Mutiara & Gadget Lain | HTML "Kata-Kata Mutiara" | Kutipan (sudah terisi). Ganti teks di dalam `<p>` dan nama di dalam `<cite>`. |
+| Footer: Kata Mutiara & Gadget Lain | **Tambah Gadget** | Untuk **Total Pengunjung**: klik *Tambah Gadget* → **Statistik Blog** → judul "Total Pengunjung", pilih *Sepanjang waktu*. |
 | Kategori (Halaman Berita) | Label | Pilih **Semua label**. |
 
 Contoh isi widget **Kontak**:

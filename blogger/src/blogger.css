@@ -81,8 +81,26 @@
 
 /* Footer dari widget */
 .site-footer .widget h3 { margin-top: 0; }
+.footer-col .widget + .widget .footer-html { margin-top: 4px; }
+.footer-col .widget + .widget > h2 { margin-top: 22px; }
+.footer-map .map-link { margin-bottom: 0; }
 .footer-html p { margin: 0 0 6px; }
+.footer-html iframe { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; border: 0; border-radius: 12px; background: #13305f; }
+.footer-quote p:last-of-type { margin-bottom: 8px; }
 .footer-grid > .section:empty { display: none; }
+/* Gadget bawaan Blogger yang ditambahkan lewat Tata Letak (mis. Statistik Blog / Total Pengunjung) */
+.site-footer .widget > h2, .site-footer .widget > .title {
+  font-family: var(--font-head); color: #fff; font-size: .92rem; font-weight: 700; line-height: 1.2;
+  margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+.site-footer .Stats .counter-wrapper, .site-footer .Stats .text-counter-wrapper { display: inline-flex; gap: 3px; flex-wrap: wrap; }
+.site-footer .Stats .digit {
+  display: inline-block; min-width: 24px; padding: 4px 6px; text-align: center;
+  background: #13305f; color: #fff; border-radius: 5px; font-family: var(--font-head); font-weight: 700; font-size: 1rem;
+}
+.site-footer .Stats .blind-plate { display: none; }
+.site-footer .Stats img { display: inline-block; vertical-align: middle; margin-right: 6px; opacity: .8; }
 
 /* Halaman 404 */
 .not-found { text-align: center; padding: 64px 16px; }
+.footer-bottom > span:first-child { display: inline; }

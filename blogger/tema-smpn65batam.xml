@@ -292,18 +292,31 @@ p { margin: 0 0 1em; }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--blue-950); color: #b9c8e6; font-size: .9rem; }
-.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; padding-top: 36px; padding-bottom: 28px; }
-.footer-brand { display: flex; gap: 14px; align-items: flex-start; }
-.footer-brand strong { font-family: var(--font-head); color: #fff; font-size: 1rem; }
-.footer-brand p { margin: 4px 0 0; }
-.site-footer h3 { color: #fff; font-size: .92rem; margin-bottom: 10px; }
-.footer-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.footer-list li { display: flex; gap: 10px; align-items: flex-start; }
-.footer-list .ic { width: 18px; height: 18px; margin-top: 3px; color: var(--blue-500); }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1.2fr 1.2fr; gap: 32px; padding-top: 40px; padding-bottom: 32px; }
+.site-footer h3 {
+  color: #fff; font-size: .92rem; margin-bottom: 14px; padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, .12); position: relative;
+}
+.site-footer h3::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 36px; height: 2px; background: var(--blue-500); }
+.footer-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.footer-list li { display: flex; gap: 8px; align-items: flex-start; line-height: 1.45; }
+.footer-list .ic { width: 16px; height: 16px; margin-top: 2px; color: var(--blue-500); }
+.footer-map iframe { display: block; width: 100%; aspect-ratio: 16 / 10; border: 0; border-radius: 12px; background: #13305f; }
+.map-link { display: inline-flex; align-items: center; gap: 6px; margin: 10px 0 12px; font-weight: 600; }
+.map-link .ic { width: 16px; height: 16px; }
+.footer-quote { margin: 0; padding: 14px 16px; border-left: 3px solid var(--blue-500); background: rgba(255, 255, 255, .04); border-radius: 0 10px 10px 0; }
+.footer-quote p { margin: 0 0 8px; color: #dbe5f7; font-family: var(--font); font-style: italic; line-height: 1.6; }
+.footer-quote cite { font-style: normal; font-size: .82rem; color: #8193b8; }
 .site-footer a { color: #b9c8e6; }
 .site-footer a:hover { color: #fff; }
-.footer-bottom { border-top: 1px solid rgba(255, 255, 255, .1); padding-top: 14px; padding-bottom: 18px; font-size: .82rem; color: #8193b8; }
-@media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 22px; } }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px 16px; flex-wrap: wrap;
+  border-top: 1px solid rgba(255, 255, 255, .1); padding-top: 14px; padding-bottom: 18px; font-size: .82rem; color: #8193b8;
+}
+.footer-bottom > span { display: inline-flex; align-items: center; gap: 8px; }
+.footer-bottom img { width: 22px; height: auto; }
+@media (max-width: 960px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; gap: 26px; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
@@ -392,11 +405,29 @@ p { margin: 0 0 1em; }
 
 /* Footer dari widget */
 .site-footer .widget h3 { margin-top: 0; }
+.footer-col .widget + .widget .footer-html { margin-top: 4px; }
+.footer-col .widget + .widget > h2 { margin-top: 22px; }
+.footer-map .map-link { margin-bottom: 0; }
 .footer-html p { margin: 0 0 6px; }
+.footer-html iframe { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; border: 0; border-radius: 12px; background: #13305f; }
+.footer-quote p:last-of-type { margin-bottom: 8px; }
 .footer-grid > .section:empty { display: none; }
+/* Gadget bawaan Blogger yang ditambahkan lewat Tata Letak (mis. Statistik Blog / Total Pengunjung) */
+.site-footer .widget > h2, .site-footer .widget > .title {
+  font-family: var(--font-head); color: #fff; font-size: .92rem; font-weight: 700; line-height: 1.2;
+  margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+.site-footer .Stats .counter-wrapper, .site-footer .Stats .text-counter-wrapper { display: inline-flex; gap: 3px; flex-wrap: wrap; }
+.site-footer .Stats .digit {
+  display: inline-block; min-width: 24px; padding: 4px 6px; text-align: center;
+  background: #13305f; color: #fff; border-radius: 5px; font-family: var(--font-head); font-weight: 700; font-size: 1rem;
+}
+.site-footer .Stats .blind-plate { display: none; }
+.site-footer .Stats img { display: inline-block; vertical-align: middle; margin-right: 6px; opacity: .8; }
 
 /* Halaman 404 */
 .not-found { text-align: center; padding: 64px 16px; }
+.footer-bottom > span:first-child { display: inline; }
 ]]></b:skin>
 </head>
 <body expr:class='data:view.isSingleItem ? &quot;view-single&quot; : &quot;view-list&quot;'>
@@ -716,13 +747,27 @@ p { margin: 0 0 1em; }
 <!-- ==================== FOOTER ==================== -->
 <footer class='site-footer'>
   <div class='container footer-grid'>
-    <div class='footer-brand'>
-      <div>
-        <strong><data:blog.title/></strong>
-        <p>Media Informasi &amp; Pengumuman Sekolah</p>
-      </div>
-    </div>
-    <b:section class='footer-links' id='footer-links' maxwidgets='1' name='Footer: Tautan' showaddelement='no'>
+    <b:section class='footer-col footer-map' id='footer-lokasi' maxwidgets='2' name='Footer: Lokasi &amp; Kontak' showaddelement='no'>
+      <b:widget id='HTML3' locked='true' title='Lokasi SMPN 65 Batam' type='HTML' version='1' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<iframe src="https://www.google.com/maps?q=SMP+Negeri+65+Batam&output=embed" title="Peta lokasi SMP Negeri 65 Batam" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+<a class="map-link" href="https://www.google.com/maps/search/?api=1&query=SMP+Negeri+65+Batam" target="_blank" rel="noopener">Buka di Google Maps &#8599;</a>]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <h3><data:title/></h3>
+          <div class='footer-html'><data:content/></div>
+        </b:includable>
+      </b:widget>
+      <b:widget id='HTML2' locked='true' title='Kontak' type='HTML' version='1' visible='true'>
+        <b:includable id='main'>
+          <b:if cond='data:content'>
+            <div class='footer-html'><data:content/></div>
+          </b:if>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+    <b:section class='footer-col' id='footer-links' maxwidgets='1' name='Footer: Tautan' showaddelement='no'>
       <b:widget id='LinkList4' locked='true' title='Tautan' type='LinkList' version='1' visible='true'>
         <b:widget-settings>
           <b:widget-setting name='sorting'>NONE</b:widget-setting>
@@ -739,26 +784,54 @@ p { margin: 0 0 1em; }
         </b:widget-settings>
         <b:includable id='main'>
           <h3><data:title/></h3>
-          <ul class='footer-list'>
+          <ul class='footer-list footer-links'>
             <b:loop values='data:links' var='link'>
-              <li><a expr:href='data:link.target'><data:link.name/></a></li>
+              <li><svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M5 12h14M13 6l6 6-6 6'/></svg><a expr:href='data:link.target'><data:link.name/></a></li>
             </b:loop>
           </ul>
         </b:includable>
       </b:widget>
     </b:section>
-    <b:section class='footer-contact' id='footer-contact' maxwidgets='1' name='Footer: Kontak' showaddelement='no'>
-      <b:widget id='HTML2' locked='true' title='Kontak' type='HTML' version='1' visible='true'>
+
+    <b:section class='footer-col' id='footer-penting' maxwidgets='1' name='Footer: Link Penting Pendidikan' showaddelement='no'>
+      <b:widget id='LinkList5' locked='true' title='Link Penting Pendidikan' type='LinkList' version='1' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='sorting'>NONE</b:widget-setting>
+          <b:widget-setting name='text-0'>Cek NISN Siswa</b:widget-setting>
+          <b:widget-setting name='link-0'>https://nisn.data.kemendikdasmen.go.id/</b:widget-setting>
+          <b:widget-setting name='text-1'>Download Buku Siswa PAUD, SD, SMP, SMA</b:widget-setting>
+          <b:widget-setting name='link-1'>https://buku.kemendikdasmen.go.id/</b:widget-setting>
+          <b:widget-setting name='text-2'>Cek Data Dapodik Guru (Info GTK)</b:widget-setting>
+          <b:widget-setting name='link-2'>https://info.gtk.dikdasmen.go.id/</b:widget-setting>
+        </b:widget-settings>
         <b:includable id='main'>
-          <b:if cond='data:content'>
-            <h3><data:title/></h3>
-            <div class='footer-html'><data:content/></div>
-          </b:if>
+          <h3><data:title/></h3>
+          <ul class='footer-list footer-links'>
+            <b:loop values='data:links' var='link'>
+              <li><svg aria-hidden='true' class='ic' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' viewBox='0 0 24 24'><path d='M5 12h14M13 6l6 6-6 6'/></svg><a expr:href='data:link.target' rel='noopener' target='_blank'><data:link.name/></a></li>
+            </b:loop>
+          </ul>
+        </b:includable>
+      </b:widget>
+    </b:section>
+
+    <b:section class='footer-col' id='footer-extra' maxwidgets='3' name='Footer: Kata Mutiara &amp; Gadget Lain' showaddelement='yes'>
+      <b:widget id='HTML4' locked='false' title='Kata-Kata Mutiara' type='HTML' version='1' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<p>Jika kamu tak tahan penatnya belajar, maka kamu akan menanggung perihnya kebodohan.</p>
+<cite>Imam Syafi'i</cite>]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <h3><data:title/></h3>
+          <blockquote class='footer-quote'><data:content/></blockquote>
         </b:includable>
       </b:widget>
     </b:section>
   </div>
-  <div class='container footer-bottom'>&#169; <span data-year='true'>2026</span> <data:blog.title/></div>
+  <div class='container footer-bottom'>
+    <span>&#169; <span data-year='true'>2026</span> <data:blog.title/></span>
+    <span>Media informasi dan pengumuman sekolah</span>
+  </div>
 </footer>
 
 <dialog aria-label='Pratinjau foto' class='lightbox' id='lightbox'><img alt=''/><p>&#160;</p></dialog>

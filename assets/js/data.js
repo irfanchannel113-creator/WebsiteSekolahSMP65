@@ -34,6 +34,26 @@ window.SITE = {
     facebook: ""
   },
 
+  // Footer: peta lokasi. "embed" = alamat dari Google Maps → Bagikan → Sematkan peta (bagian src="...").
+  lokasi: {
+    judul: "Lokasi SMPN 65 Batam",
+    embed: "https://www.google.com/maps?q=SMP+Negeri+65+Batam&output=embed",
+    tautan: "https://www.google.com/maps/search/?api=1&query=SMP+Negeri+65+Batam"
+  },
+
+  // Footer: tautan penting dunia pendidikan
+  linkPenting: [
+    { nama: "Cek NISN Siswa", url: "https://nisn.data.kemendikdasmen.go.id/" },
+    { nama: "Download Buku Siswa PAUD, SD, SMP, SMA", url: "https://buku.kemendikdasmen.go.id/" },
+    { nama: "Cek Data Dapodik Guru (Info GTK)", url: "https://info.gtk.dikdasmen.go.id/" }
+  ],
+
+  // Footer: kata-kata mutiara
+  kataMutiara: {
+    teks: "Jika kamu tak tahan penatnya belajar, maka kamu akan menanggung perihnya kebodohan.",
+    sumber: "Imam Syafi'i"
+  },
+
   // Tautan aplikasi/layanan eksternal. Isi URL lengkap.
   tautan: {
     simantap: "",          // Aplikasi SIMANTAP 65
